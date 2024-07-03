@@ -55,7 +55,7 @@ register:
     pullPolicy: Always
     tag: "latest"
   args:
-    - register ## not used right now
+    - register
 
 node:
   volumeMounts:
