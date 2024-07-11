@@ -30,6 +30,9 @@
                 },
                 "host": {
                     "type": "string"
+                },
+                "ingressClassName": {
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -158,6 +161,9 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "enabled": {
+                    "type": "boolean"
                 },
                 "image": {
                     "properties": {
