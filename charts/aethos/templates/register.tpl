@@ -1,3 +1,5 @@
+{{- if .Values.register.enabled -}}
+
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -38,3 +40,4 @@ spec:
           configMap:
             name: {{ include "aethos.fullname" . }}-config
   backoffLimit: 2
+{{- end }}
