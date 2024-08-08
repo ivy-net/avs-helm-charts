@@ -100,7 +100,8 @@ pvc:
   labels: {}
 node:
   # Command to run in the node container
-  command: "worker"
+  command: 
+    - "worker"
 
   # Volume mounts for the node container
   volumeMounts: []
