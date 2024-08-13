@@ -13,6 +13,7 @@ metadata:
     {{- end}}
 spec:
   type: {{ .Values.service.type }}
+  loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   ports:
   {{- range .Values.service.ports }}
   - name: {{ .name }}
