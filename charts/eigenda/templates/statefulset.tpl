@@ -49,9 +49,6 @@ spec:
         - name: retrieval
           containerPort: {{ .Values.reverseProxy.nodeRetrievalPort }}
           protocol: TCP
-        - name: api
-          containerPort: {{ .Values.reverseProxy.nodeApiPort }}
-          protocol: TCP
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/templates/default.conf.template
@@ -74,6 +71,12 @@ spec:
         image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.node.image.pullPolicy }}
         ports:
+        - name: internalRetrievalPort
+          containerPort: {{ .Values.node.internalRetrievalPort }}
+          protocol: TCP
+        - name: api
+          containerPort: {{ .Values.node.nodeApiPort }}
+          protocol: TCP
         - name: dispersal
           containerPort: {{ .Values.node.dispersalPort }}
           protocol: TCP
