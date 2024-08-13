@@ -6,9 +6,10 @@ node:
     tag: "0.7.4"
 
   # Ports to expose from the node container
+  internalRetrievalPort: 3204
   dispersalPort: 32005
   metricsPort: 9092
-
+  nodeApiPort: 9091
   # Resource limits and requests for the node container
   resources: {}
   # Example resource limits and requests
@@ -21,29 +22,28 @@ node:
 
   # Environment variables for the node container
   volumeMounts:
-  - name: bls-key
-    mountPath: /app/operator_keys/bls_key.json
-    subPath: bls_key.json
-    readOnly: true
-  - name: ecdsa-key
-    mountPath: /app/operator_keys/ecdsa_key.json
-    subPath: ecdsa_key.json
-    readOnly: true
-  - name: eigenda
-    mountPath: /app
+    - name: bls-key
+      mountPath: /app/operator_keys/bls_key.json
+      subPath: bls_key.json
+      readOnly: true
+    - name: ecdsa-key
+      mountPath: /app/operator_keys/ecdsa_key.json
+      subPath: ecdsa_key.json
+      readOnly: true
+    - name: eigenda
+      mountPath: /app
   env:
-  - name: NODE_ECDSA_KEY_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: YOUR_SECRET_NAME
-        key: ecdsa-private-key-password
+    - name: NODE_ECDSA_KEY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: YOUR_SECRET_NAME
+          key: ecdsa-private-key-password
 
-  - name: NODE_BLS_KEY_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: YOUR_SECRET_NAME
-        key: bls-private-key-password
-
+    - name: NODE_BLS_KEY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: YOUR_SECRET_NAME
+          key: bls-private-key-password
 
   # Arguments to pass to the node container
   args: []
@@ -52,7 +52,6 @@ node:
 
 reverseProxy:
   nodeRetrievalPort: 32004
-  nodeApiPort: 9091
 
 # Node selector for the pod
 nodeSelector: {}
@@ -93,22 +92,21 @@ securityContext: {}
 
 # Volumes for the pod
 volumes:
-- name: bls-key
-  secret:
-    secretName: YOUR_SECRET_NAME
-    items:
-    - key: bls-key
-      path: bls_key.json
-- name: ecdsa-key
-  secret:
-    secretName: YOUR_SECRET_NAME
-    items:
-    - key: ecdsa-key
-      path: ecdsa_key.json
-- name: eigenda
-  persistentVolumeClaim:
-    claimName: eigenda
-
+  - name: bls-key
+    secret:
+      secretName: YOUR_SECRET_NAME
+      items:
+        - key: bls-key
+          path: bls_key.json
+  - name: ecdsa-key
+    secret:
+      secretName: YOUR_SECRET_NAME
+      items:
+        - key: ecdsa-key
+          path: ecdsa_key.json
+  - name: eigenda
+    persistentVolumeClaim:
+      claimName: eigenda
 
 vmPodScrape:
   # Enable or disable VM Pod Scraping

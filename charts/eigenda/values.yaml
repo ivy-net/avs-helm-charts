@@ -22,24 +22,23 @@ service:
 
   # List of ports to expose from the service
   ports:
-  # Example port configuration for metrics service
-  - name: api
-    port: 9091
-    protocol: TCP
-    targetPort: 9091
-  - name: metrics
-    port: 9092
-    protocol: TCP
-    targetPort: 9092
-  - name: retrieval
-    port: 32004
-    protocol: TCP
-    targetPort: 32004
-  - name: dispersal
-    port: 32005
-    protocol: TCP
-    targetPort: 32005
-
+    # Example port configuration for metrics service
+    - name: api
+      port: 9091
+      protocol: TCP
+      targetPort: 9091
+    - name: metrics
+      port: 9092
+      protocol: TCP
+      targetPort: 9092
+    - name: retrieval
+      port: 32004
+      protocol: TCP
+      targetPort: 32004
+    - name: dispersal
+      port: 32005
+      protocol: TCP
+      targetPort: 32005
 
 ingress:
   # Annotations to add to the ingress
@@ -68,7 +67,7 @@ register:
 
   # Arguments to pass to the register container
   args:
-  - --config=/app/config/worker-conf.toml
+    - --config=/app/config/worker-conf.toml
 pvc:
   size: 30Gi
   storageClassName: default
@@ -127,9 +126,10 @@ node:
     tag: "latest"
 
   # Ports to expose from the node container
+  internalRetrievalPort: 3204
   dispersalPort: 32005
   metricsPort: 9092
-
+  nodeApiPort: 9091
   # Resource limits and requests for the node container
   resources: {}
 
@@ -137,17 +137,12 @@ node:
   volumeMounts: []
   env: []
 
-
   # Arguments to pass to the node container
   args: []
-
 
 # Ports to expose from the node container
 reverseProxy:
   nodeRetrievalPort: 32004
-  nodeApiPort: 9091
-
-
 
 configs:
   # Nginx configuration for the reverse proxy
