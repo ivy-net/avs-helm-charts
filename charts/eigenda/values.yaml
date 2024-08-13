@@ -1,0 +1,120 @@
+# Optionally override the name of the chart
+nameOverride: ""
+
+# Optionally override the full name of the chart
+fullnameOverride: ""
+
+# Number of replicas to deploy
+replicaCount: 1
+
+# Additional labels to add to resources
+labels: {}
+
+# Secrets for pulling images from a private registry
+imagePullSecrets: []
+
+service:
+  # Annotations to add to the service
+  annotations: {}
+
+  # Type of service to create
+  type: ClusterIP
+
+  # List of ports to expose from the service
+  ports:
+  # Example port configuration for metrics service
+  - name: api
+    port: 9091
+    protocol: TCP
+    targetPort: 9091
+  - name: metrics
+    port: 9092
+    protocol: TCP
+    targetPort: 9092
+  - name: retrieval
+    port: 32004
+    protocol: TCP
+    targetPort: 32004
+  - name: dispersal
+    port: 32005
+    protocol: TCP
+    targetPort: 32005
+
+
+ingress:
+  # Annotations to add to the ingress
+  annotations: {}
+
+  # Enable or disable the ingress
+  enabled: false
+
+  # Hostname for the ingress
+  host: example.com
+
+register:
+  # Enable or disable the register container
+  enabled: false
+
+  # Configuration for the register container image
+  image:
+    # Image registry for the register container
+    repository: <IMAGE_REGISTRY>
+
+    # Image pull policy for the register container
+    pullPolicy: Always
+
+    # Image tag for the register container
+    tag: "<IMAGE_TAG>"
+
+  # Arguments to pass to the register container
+  args:
+  - --config=/app/config/worker-conf.toml
+pvc:
+  size: 30Gi
+  storageClassName: default
+  annotations: {}
+  labels: {}
+
+# Node selector for the pod
+nodeSelector: {}
+
+# Tolerations for the pod
+tolerations: []
+
+# Affinity rules for the pod
+affinity: {}
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+
+  # Annotations to add to the service account
+  annotations: {}
+
+  # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# Annotations to add to the pod
+podAnnotations: {}
+
+# Security context for the pod
+podSecurityContext: {}
+# Example security context
+# fsGroup: 2000
+
+# Security context for the container
+securityContext: {}
+# Example security context
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+# Volumes for the pod
+volumes: []
+
+vmPodScrape:
+  # Enable or disable VM Pod Scraping
+  enabled: true
