@@ -14,10 +14,10 @@ node:
   resources: {}
   # Example resource limits and requests
   # limits:
-  #   cpu: 4
+  #   cpu: "4"
   #   memory: 4Gi
   # requests:
-  #   cpu: 2
+  #   cpu: "2"
   #   memory: 4Gi
 
   # Environment variables for the node container

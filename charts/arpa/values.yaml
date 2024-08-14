@@ -32,7 +32,6 @@ ingress:
   host: example.com
 
 configs:
-
   default_linux_config.json: |
 
     {
@@ -64,7 +63,6 @@ configs:
             }
         }
     }
-
 
   operator.yaml: |
 
@@ -249,10 +247,10 @@ node:
       protocol: TCP
   resources:
     limits:
-      cpu: 4
+      cpu: "4"
       memory: 4Gi
     requests:
-      cpu: 2
+      cpu: "2"
       memory: 4Gi
   env: []
   command:

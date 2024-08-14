@@ -21,7 +21,8 @@ service:
   type: ClusterIP
 
   # List of ports to expose from the service
-  ports: []
+  ports:
+    []
     # Example port configuration for node-api service
     # - name: node-api
     #   port: 9010
@@ -84,7 +85,8 @@ node:
     tag: "<IMAGE_TAG>"
 
   # Ports to expose from the node container
-  ports: []
+  ports:
+    []
     # Example port configuration for node-api container
     # - name: node-api
     #   containerPort: 9010
@@ -95,26 +97,29 @@ node:
     #   protocol: TCP
 
   # Resource limits and requests for the node container
-  resources: {}
+  resources:
+    {}
     # Example resource limits and requests
     # limits:
-    #   cpu: 4
+    #   cpu: "4"
     #   memory: 4Gi
     # requests:
-    #   cpu: 2
+    #   cpu: "2"
     #   memory: 4Gi
 
   # Environment variables for the node container
   env: []
 
   # Arguments to pass to the node container
-  args: []
+  args:
+    []
     # Example arguments for the node container
     # - --config=/app/config/operator.yaml
     # - start-operator
 
   # Readiness probe for the node container
-  readinessProbe: {}
+  readinessProbe:
+    {}
     # Example HTTP readiness probe
     # httpGet:
     #   path: /metrics
@@ -126,7 +131,8 @@ node:
     # successThreshold: 1
 
   # Liveness probe for the node container
-  livenessProbe: {}
+  livenessProbe:
+    {}
     # Example HTTP liveness probe
     # httpGet:
     #   path: /metrics
@@ -160,12 +166,14 @@ serviceAccount:
 podAnnotations: {}
 
 # Security context for the pod
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # Example security context
   # fsGroup: 2000
 
 # Security context for the container
-securityContext: {}
+securityContext:
+  {}
   # Example security context
   # capabilities:
   #   drop:

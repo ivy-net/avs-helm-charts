@@ -62,10 +62,10 @@ node:
       protocol: TCP
   resources:
     limits:
-      cpu: 4
+      cpu: "4"
       memory: 16Gi
     requests:
-      cpu: 2
+      cpu: "2"
       memory: 8Gi
   env: []
   args:

@@ -44,13 +44,14 @@ node:
       protocol: TCP
 
   # Resource limits and requests for the node container
-  resources: {}
+  resources:
+    {}
     # Example resource limits and requests
     # limits:
-    #   cpu: 4
+    #   cpu: "4"
     #   memory: 4Gi
     # requests:
-    #   cpu: 2
+    #   cpu: "2"
     #   memory: 4Gi
 
   # Environment variables for the node container
@@ -78,13 +79,10 @@ node:
     - name: PUBLIC_PARAMS__SKIP_STORE
       value: false
 
-
   # Arguments to pass to the node container
   args:
     # Example arguments for the node container
     - --config=/app/config/worker-conf.toml
-
-
 
 # Node selector for the pod
 nodeSelector: {}
@@ -109,12 +107,14 @@ serviceAccount:
 podAnnotations: {}
 
 # Security context for the pod
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # Example security context
   # fsGroup: 2000
 
 # Security context for the container
-securityContext: {}
+securityContext:
+  {}
   # Example security context
   # capabilities:
   #   drop:
