@@ -1,0 +1,65 @@
+lifecycleHooks: "true"
+
+node:
+  volumeMounts:
+    - name: bls-key
+      mountPath: /tmp/blsEncryptedWallet.json.ro
+      subPath: blsEncryptedWallet.json
+    - name: ecdsa-aliased-key
+      mountPath: /tmp/ecdsaAliasedEncryptedWallet.json.ro
+      subPath: ecdsaAliasedEncryptedWallet.json
+    - name: eoracle
+      mountPath: /app/
+  lifecycleHooks:
+    postStart:
+      exec:
+        command:
+          - /bin/sh
+          - -c
+          - |
+            echo "ReadOnly secret workaround"
+            cp /tmp/blsEncryptedWallet.json.ro /app/.keystore/blsEncryptedWallet.json
+            cp /tmp/ecdsaAliasedEncryptedWallet.json.ro /app/.keystore/ecdsaAliasedEncryptedWallet.json
+            chmod 644 /app/.keystore/* && chown -R eoracle:eoracle /app/.keystore/*
+
+  env:
+    - name: EO_PASSPHRASE
+      valueFrom:
+        secretKeyRef:
+          name: YOUR_SECRET
+          key: eo-passphrase
+
+serviceAccount:
+  create: true
+  name: eoracle
+
+volumes:
+  - name: ecdsa-aliased-key
+    secret:
+      secretName: YOUR_SECRET
+      items:
+        - key: ecdsa-aliased-key
+          path: ecdsaAliasedEncryptedWallet.json
+  - name: bls-key
+    secret:
+      secretName: YOUR_SECRET
+      items:
+        - key: bls-key
+          path: blsEncryptedWallet.json
+  - name: eoracle
+    persistentVolumeClaim:
+      claimName: eoracle
+
+configs:
+  EO_CHAIN_RPC_ENDPOINT: "https://rpc.testnet.eoracle.network"
+  EO_CHAIN_WS_ENDPOINT: "wss://rpc.testnet.eoracle.network/ws"
+  EO_REGISTRY_COORDINATOR: "0xc4A6E362e8Bd89F28Eb405F9Aa533784884B9c4F"
+  EO_STAKE_REGISTRY: "0xdda1a381920971642477CA79F5BFc1515414782d"
+  EO_CONFIG_ADDRESS: "0xf735Ad57952906a672eEEaDbef3bC69ECD24E50C"
+  EO_AGGREGATOR_ADDRESS: "0x6B0BE2aaD42612803c9Fc389A3806EF21E8cbDb6"
+  ETH_RPC_ENDPOINT: "https://holesky.drpc.org"
+  ETHEREUM_FEED_RPC_ENDPOINT: "https://ethereum-rpc.publicnode.com"
+  EO_KEYSTORE_PATH: ".keystore"
+  EO_PROMETHEUS_PORT: "10004"
+  EO_HEALTH_ENDPOINTS_PORT: "10003"
+  EO_LOGGING_LEVEL: "debug"
