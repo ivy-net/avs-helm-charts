@@ -75,9 +75,6 @@ spec:
           {{- with .Values.volumes }}
           {{- toYaml . | nindent 8 }}
           {{- end }}
-        - name: config
-          configMap:
-            name: {{ include "ava.fullname" . }}-config
 
       {{- with .Values.nodeSelector }}
       nodeSelector:

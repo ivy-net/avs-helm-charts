@@ -62,14 +62,15 @@ register:
     pullPolicy: Always
     tag: ""
   command:
-    - register
+    - /ava
   args:
+    - register
     - --config=/app/config/operator.yaml
 
 node:
   volumeMounts: []
   image:
-    repository: avaofficial/ava-labs-avs-operator
+    repository: avaprotocol/ap-avs
     pullPolicy: Always
     tag: ""
   ports:
@@ -79,7 +80,8 @@ node:
     - name: metrics
       containerPort: 9090
       protocol: TCP
-  resources: {}
+  resources:
+    {}
     # limits:
     #   cpu: 4
     #   memory: 16Gi
@@ -88,18 +90,19 @@ node:
     #   memory: 8Gi
   env: []
   command:
-    - operator
+    - /ava
   args:
+    - operator
     - --config=/app/config/operator.yaml
-  readinessProbe:
-    httpGet:
-      path: /
-      port: 9090
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    timeoutSeconds: 3
-    failureThreshold: 3
-    successThreshold: 1
+  # readinessProbe:
+  #   httpGet:
+  #     path: /
+  #     port: 9090
+  #   initialDelaySeconds: 30
+  #   periodSeconds: 10
+  #   timeoutSeconds: 3
+  #   failureThreshold: 3
+  #   successThreshold: 1
   # livenessProbe:
   #   httpGet:
   #     path: /metrics
