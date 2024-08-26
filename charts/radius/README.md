@@ -23,7 +23,7 @@ More information about radius you can find here `https://docs.radius-labs.com/in
    - [Depository](https://github.com/radiusxyz/depository/tree/main)
 
 2. -Create a secret in Kubernetes for any workflow you want. Example you can find in `./examples`-
-
+> Dont use secret in open way, try to figure out with [vault](https://github.com/hashicorp/vault) / [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) / [sops](https://github.com/getsops/sops)
 3. Fill the placeholders in your `values.yaml` file:
    - YOUR_WALLET_KEY
    - YOUR_PUBLIC_DOMAIN
