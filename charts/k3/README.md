@@ -9,6 +9,7 @@ More information about k3 you can find here `https://docs.k3-labs.com/introducti
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Usage](#usage)
+    - [Steps to Follow:](#steps-to-follow)
   - [Configuration](#configuration)
   - [Dependencies](#dependencies)
   - [Troubleshooting](#troubleshooting)
@@ -21,6 +22,23 @@ To use this chart, you can override default values by providing your own `values
 ```sh
 helm install k3 p2p-avs/k3 -f values.yaml
 ```
+
+### Steps to Follow:
+1. Generate keys via the following URLs:
+   - [Eigenlayer Operator Installation Guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation)
+
+2. Create a secret in Kubernetes for any workflow you want. Example you can find in `./examples`
+> Dont use secret in open way, try to figure out with [vault](https://github.com/hashicorp/vault) / [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) / [sops](https://github.com/getsops/sops)
+1. Fill the placeholders in your `values.yaml` file:
+   - `YOUR_OPERATOR_ADDRESS`
+   - `YOUR_ECDSA_SIGN_KEY_SECRET`
+   - `YOUR_BLS_KEY_SECRET`
+   - `YOUR_ECDSA_KEY_SECRET`
+
+2. Run the following command to upgrade and install the chart:
+   ```sh
+   helm upgrade -i k3 p2p-avs/k3 -f values.yaml
+   ```
 
 Registration must be pass automatically via job register
 

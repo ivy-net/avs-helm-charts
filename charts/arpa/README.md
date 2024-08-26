@@ -30,7 +30,7 @@ helm install arpa p2p-avs/arpa -f values.yaml
    - [Arpa Configs](https://github.com/0xJomo/arpa-configs)
 
 2. Create a secret in Kubernetes for any workflow you want. Example you can find in `./examples`
-
+> Dont use secret in open way, try to figure out with [vault](https://github.com/hashicorp/vault) / [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) / [sops](https://github.com/getsops/sops)
 3. Fill the placeholders in your `values.yaml` file:
    - `YOUR_OPERATOR_ADDRESS`
    - `YOUR_ECDSA_SIGN_KEY_SECRET`
