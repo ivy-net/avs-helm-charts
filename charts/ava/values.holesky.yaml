@@ -1,0 +1,91 @@
+ingress:
+  annotations: {}
+  enabled: false
+  host: example.com
+  ingressClassName: "nginx"
+
+node:
+  volumeMounts:
+    - name: ava
+      mountPath: /app/data/
+    - name: bls-key
+      mountPath: /app/operator_keys/bls_key.json
+      subPath: bls_key.json
+      readOnly: true
+    - name: ecdsa-key
+      mountPath: /app/operator_keys/ecdsa_key.json
+      subPath: ecdsa_key.json
+      readOnly: true
+    - name: config
+      mountPath: /app/config/operator.yaml
+      subPath: operator.yaml
+  env:
+    - name: ECDSA_KEYSTORE_PATH
+      value: "/app/operator_keys/ecdsa_key.json"
+    - name: ECDSA_KEY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: YOUR_ECDSA_KEY_SECRET
+          key: ecdsa-private-key-password
+    - name: BLS_KEYSTORE_PATH
+      value: "/app/operator_keys/bls_key.json"
+    - name: BLS_KEY_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: YOUR_BLS_KEY_SECRET
+          key: bls-private-key-password
+    - name: DB_PATH
+      value: "/app/data/db"
+    - name: PUBLIC_METRICS_PORT
+      value: "9090"
+    - name: PUBLIC_NODEAPI_PORT
+      value: "9010"
+
+
+serviceAccount:
+  create: false
+  name: ava
+
+volumes:
+  - name: ava
+    persistentVolumeClaim:
+      claimName: ava
+  - name: bls-key
+    secret:
+      secretName: YOUR_BLS_KEY_SECRET
+      items:
+        - key: bls-private-key
+          path: bls_key.json
+  - name: ecdsa-key
+    secret:
+      secretName: YOUR_ECDSA_KEY_SECRET
+      items:
+        - key: ecdsa-private-key
+          path: ecdsa_key.json
+
+configs:
+  ## Need double check after changes
+  operator.yaml: |
+
+    production: true
+
+    operator_address: <operator-address>
+
+    avs_registry_coordinator_address: 0x90c6d6f2A78d5Ce22AB8631Ddb142C03AC87De7a
+    operator_state_retriever_address: 0xb7bb920538e038DFFEfcB55caBf713652ED2031F
+
+    # If you have your own rpc you can switch to it
+    eth_rpc_url: https://holesky.drpc.org
+    eth_ws_url: wss://holesky.drpc.org
+
+    ecdsa_private_key_store_path: /app/operator_keys/ecdsa_key.json
+    bls_private_key_store_path: /app/operator_keys/bls_key.json
+
+    db_path: /app/data/db
+
+    aggregator_server_ip_port_address: "aggregator-holesky.avaprotocol.org:2206"
+
+    eigen_metrics_ip_port_address: 0.0.0.0:9090
+    enable_metrics: true
+    node_api_ip_port_address: 0.0.0.0:9010
+    enable_node_api: true
