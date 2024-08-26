@@ -1,0 +1,141 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+labels: {}
+
+imagePullSecrets: []
+service:
+  annotations: {}
+  type: ClusterIP
+  ports:
+    - name: node-api
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+
+ingress:
+  annotations: {}
+  enabled: true
+  host: YOUR_PUBLIC_DOMAIN
+
+pvc:
+  size: 150Gi
+  storageClassName: "oci-bv"
+  labesl: {}
+  annotations: {}
+
+configs:
+  operator.toml: |
+
+    # Sequencer
+    database_path = "~/.radius/database/sequencer"
+    sequencer_rpc_url = "YOUR_PUBLIC_DOMAIN:PORT" # This must be the public IP address of the host machine on which the sequencer container runs.
+
+    # Ethereum
+    ethereum_rpc_url = "http://127.0.0.1:8545" ## replace with your rpc
+    ethereum_websocket_url = "ws://127.0.0.1:8545" ## replace with your rpc
+    signing_key = "YOUR_WALLET_KEY" # Replace the text with the operator private key
+
+    # SSAL
+    ssal_contract_address = "0x35A562f2B6b83F7840D93386d75Ba76Cc286DcA1"
+    cluster_id = "0x37b9eb99da89a819891ff2fb21018a965edba5c3998d36d9337b6af61544f1e3"
+    seeder_rpc_url = "http://52.79.222.106:3000"
+    # EigenLayer AVS
+    delegation_manager_contract_address = "0xA44151489861Fe9e3055d95adC98FbD462B948e7"
+    stake_registry_contract_address = "0x12B6bf07dFA1a62a1521f59bdC65019234884315"
+    avs_directory_contract_address = "0x055733000064333CaDDbC92763c58BF0192fFeBf"
+    avs_contract_address = "0xf2dd3971Fb9E1192d3C9834cEe69A4157FE50B23"
+
+register:
+  enabled: false
+  image:
+    repository: theradius/loggia
+    pullPolicy: Always
+    tag: ~
+  args:
+    - register ## not used right now
+
+node:
+  volumeMounts:
+    - name: radius
+      mountPath: ~/.radius/database
+    - name: config
+      mountPath: ~/config.toml
+      subPath: config.toml
+
+
+  image:
+    repository: theradius/loggia
+    pullPolicy: Always
+    tag: ~
+  ports:
+    - name: node-api
+      containerPort: 8000
+      protocol: TCP
+  resources: {}
+    # limits:
+    #   cpu: 4
+    #   memory: 16Gi
+    # requests:
+    #   cpu: 2
+    #   memory: 8Gi
+  env: []
+  args: []
+  readinessProbe:
+    httpGet:
+      path: /
+      port: 8000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 3
+    failureThreshold: 3
+    successThreshold: 1
+  # livenessProbe:
+  #   httpGet:
+  #     path: /metrics
+  #     port: 9090
+  #   initialDelaySeconds: 1200
+  #   periodSeconds: 30
+  #   timeoutSeconds: 3
+  #   failureThreshold: 2
+  #   successThreshold: 1
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+  # fsGroup: 2000
+
+  securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  #
+volumes:
+  - name: config
+    configMap:
+      name: radius-config
+  - name: radius
+    persistentVolumeClaim:
+      claimName: radius
+
+vmPodScrape:
+  enabled: false
