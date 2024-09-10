@@ -33,10 +33,10 @@ node:
         secretKeyRef:
           name: YOUR_ECDSA_KEY_SECRET
           key: ecdsa-private-key-password
-    - name: NODE_TASK_SERVER_HOST_AND_PORT_TO_BROADCAST
+    - name: PUBLIC_TASK_SERVER_ENDPOINT
       value: YOUR_EXTERNAL_ADDRESS:9010 ## Your External IP address for access to aethos node
-    - name: ETH_RPC_URL
-      value: https://lb.drpc.org/ogrpc?network=ethereum ## Your eth rpc url
+    - name: ETH_RPC_URLS
+      value: https://lb.drpc.org/ogrpc?network=ethereum, https://lb.drpc2.org/ogrpc?network=ethereum
 
 serviceAccount:
   create: false
@@ -66,22 +66,22 @@ configs:
     environment: production
 
     # avs service manager proxy address
-    avs_service_manager_address: 0x07E26BF8060e33fA3771d88128b75493750515c1
+    service_manager_contract: 0x07E26BF8060e33fA3771d88128b75493750515c1
     # avs directory address (eigenlayer ethereum mainnet)
-    avs_directory_address: 0x135DDa560e946695d6f155dACaFC6f1F25C1F5AF
+    eigen_avs_directory_contract: 0x135DDa560e946695d6f155dACaFC6f1F25C1F5AF
 
 
     # avs node spec compliance https://eigen.nethermind.io/docs/spec/intro
-    node_eigen_api_server_host_and_port: 0.0.0.0:8080
-    eigen_metrics_ip_port_address: 0.0.0.0:9090
+    eigen_avs_node_api_server_endpoint: 0.0.0.0:8080
+    metrics_server_endpoint: 0.0.0.0:9090
 
     # grpc server for communication in between operator and aggregator
-    node_task_server_host_and_port: 0.0.0.0:9010
+    internal_task_server_endpoint: 0.0.0.0:9010
 
     # grpc server on which the operator receives tasks
 
     # address which the aggregator listens on for operator signed messages
-    aggregator_server_ip_port_address: task.aethos.network:50051
+    middleware_server_endpoint: task.aethos.network:50051
 
     # db path
     db_path: /app/data/
