@@ -32,15 +32,36 @@ configs:
     leave empty
 
 register:
+  initContainer:
+    image:
+      repository: ghcr.io/foundry-rs/foundry
+      pullPolicy: IfNotPresent
+      tag: "latest"
+    volumeMounts: []
+    env: []
+    command:
+      - /bin/sh
+    args:
+      - date
   enabled: true
   image:
     repository: k3official/k3-labs-avs-operator
     pullPolicy: Always
     tag: "latest"
-  args:
-    - register
 
 node:
+  initContainer:
+    image:
+      repository: ghcr.io/foundry-rs/foundry
+      pullPolicy: IfNotPresent
+      tag: "latest"
+    volumeMounts: []
+    env: []
+    command:
+      - /bin/sh
+    args:
+      - date
+
   volumeMounts: []
   image:
     repository: k3official/k3-labs-avs-operator
