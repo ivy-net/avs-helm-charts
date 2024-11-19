@@ -35,6 +35,26 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name | default (include "k3.fullname" .) }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: node-init
+          {{- with .Values.node.initContainer.command }}
+          command:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.node.initContainer.args }}
+          args:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.node.initContainer.image.repository }}:{{ .Values.node.initContainer.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.node.initContainer.image.pullPolicy }}
+          {{- with .Values.node.initContainer.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            {{- toYaml .Values.node.initContainer.env | nindent 12 }}
       containers:
         - name: node
           {{- with .Values.node.command }}
