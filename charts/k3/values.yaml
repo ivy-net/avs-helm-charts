@@ -87,15 +87,7 @@ node:
   env: []
   args:
     - performer
-  readinessProbe:
-    httpGet:
-      path: /
-      port: 3000
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    timeoutSeconds: 3
-    failureThreshold: 3
-    successThreshold: 1
+  readinessProbe: {}
   # livenessProbe:
   #   httpGet:
   #     path: /metrics

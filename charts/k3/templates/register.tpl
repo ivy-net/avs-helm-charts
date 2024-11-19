@@ -12,7 +12,7 @@ spec:
       labels:
         {{- include "k3Register.labels" . | nindent 8 }}
     spec:
-      containers:
+
       initContainers:
         - name: register-init
           {{- with .Values.register.initContainer.command }}
@@ -33,6 +33,7 @@ spec:
           {{- end }}
           env:
             {{- toYaml .Values.register.initContainer.env | nindent 12 }}
+      containers:
         - name: register
           image: "{{ .Values.register.image.repository }}:{{ .Values.register.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.register.image.pullPolicy }}
