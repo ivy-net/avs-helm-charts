@@ -34,7 +34,7 @@ configs:
 
     production: true
 
-    operator_address: <operator-address>
+    operator_address: ""
 
     avs_registry_coordinator_address: 0x90c6d6f2A78d5Ce22AB8631Ddb142C03AC87De7a
     operator_state_retriever_address: 0xb7bb920538e038DFFEfcB55caBf713652ED2031F
@@ -143,4 +143,4 @@ serviceAccount:
   #
 volumes: []
 vmPodScrape:
-  enabled: true
+  enabled: false

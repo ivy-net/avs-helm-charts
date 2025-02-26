@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "ava".  
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "ava".
 More information about ava you can find here `https://github.com/AvaProtocol/ap-operator-setup/tree/main`
 
 ## Table of Contents
@@ -11,38 +11,49 @@ More information about ava you can find here `https://github.com/AvaProtocol/ap-
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Usage](#usage)
-    - [Steps to Follow:](#steps-to-follow)
+    - [Dependencies](#dependencies)
+    - [Steps to Follow](#steps-to-follow)
   - [Configuration](#configuration)
-  - [Dependencies](#dependencies)
   - [Troubleshooting](#troubleshooting)
+  - [Changelog](#changelog)
   - [Contributors](#contributors)
   - [License](#license)
 
 ## Usage
 
-### Steps to Follow:
+### Dependencies
+
+Ensure that Kubernetes and Helm are installed and configured.
+
+This chart depends on several Kubernetes resources (e.g. PV, secrets), and should be used in a Kubernetes cluster.
+
+### Steps to Follow
 
 1. Generate keys via the following URLs:
-
    - [Eigenlayer Operator Installation Guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation)
    - [Ava Configs](https://github.com/AvaProtocol/ap-operator-setup/tree/main)
-
-2. Create a secret in Kubernetes for any workflow you want. Example you can find in `./examples`
-
-   > Dont use secret in open way, try to figure out with [vault](https://github.com/hashicorp/vault) / [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) / [sops](https://github.com/getsops/sops)
-
-3. Fill the placeholders in your `values.yaml` file:
-
-   - `YOUR_OPERATOR_ADDRESS`
-   - `YOUR_BLS_KEY_SECRET`
-   - `YOUR_ECDSA_KEY_SECRET`
-
-4. Run the following command to upgrade and install the chart:
+1. Store keys created in Step 1 in Kubernetes secrets.
+_A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
+Use it only for tests._
+1. Make a copy the `values.yaml` file for the selected chain (holesky or mainnet). E.g.:
+    ```
+    CHAIN=holesky
+    NAME=ours
+    cp values-${CHAIN}.yaml values-${NAME}.yaml
+    ```
+1. Ensure that the Persistent volume named 'ava' is created.
+_For a help with a local test check the [example](./example/README) folder._
+1. Fill the placeholders in the `values-${NAME}.yaml` file:
+   - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
+   - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
+   - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
+   - consider adjusting `eth_rpc_url` and `eth_ws_url`
+1. Run the following command to install the chart:
    ```sh
-   helm upgrade -i ava p2p-avs/ava -f values.yaml
+   helm install -i ava p2p-avs/ava -f values-${NAME}.yaml
    ```
 
-Registration must be pass automatically via job register
+Registration must be pass automatically via job register.
 
 ## Configuration
 
@@ -62,16 +73,12 @@ The following table lists the configurable parameters of the ava chart and their
 | `node.resources.limits`     | CPU/Memory resource limits                            | `4 CPU / 16Gi Memory` |
 | `serviceAccount.create`     | Specifies whether a service account should be created | `true`                |
 | `serviceAccount.name`       | Name of the service account                           | `""`                  |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                | `true`                |
+| `vmPodScrape.enabled`       | Enable VM Pod scraping                                | `false`               |
 | `register.enabled`          | Enable register functionality                         | `true`                |
 | `register.image.repository` | Register image repository                             | `avaprotocol/ap-avs`  |
 | `register.image.tag`        | Register image tag                                    | `latest`              |
 | `register.image.pullPolicy` | Register image pull policy                            | `Always`              |
 | `configs.operator.yaml`     | Operator configuration                                | `--`                  |
-
-## Dependencies
-
-This chart depends on several Kubernetes resources and should be used in a Kubernetes cluster. Ensure that you have Kubernetes and Helm installed and configured in your environment.
 
 ## Troubleshooting
 
@@ -81,9 +88,16 @@ If you encounter any issues during installation or usage, check the following:
 - Validate your `values.yaml` file against the provided `values.schema.json`.
 - Check the logs of the Helm deployment for any errors.
 
+## Changelog
+
+- 0.2.0 - improvements to documentation and examples (first IvyNet version)
+- 0.1.1 - change templates extensio
+- 0.1.0 - orignal chart
+
 ## Contributors
 
 - xom4ek (Aleksei Lazarev) - aleksei.lazarev@p2p.org
+- dr\_nie (Wawrzek Niewodniczanski) - wawrzek@ivynet.dev
 
 ## License
 
