@@ -42,7 +42,7 @@ Use it only for tests._
     cp values-${CHAIN}.yaml values-${NAME}.yaml
     ```
 1. Ensure that the Persistent volume named 'ava' is created.
-_For a help with a local test check the [example](./example/README) folder._
+_For a help with a local test check the [example](./example/README.md) folder._
 1. Fill the placeholders in the `values-${NAME}.yaml` file:
    - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
