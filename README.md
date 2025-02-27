@@ -1,16 +1,9 @@
-<p align="center">
-    <img width="400px" height=auto src="https://raw.githubusercontent.com/p2p-org/eigenlayer-operator/main/logo.png" />
-</p>
+## IvyNet Helm Charts for Kubernetes
 
-<p align="center">
-    <a href="https://x.com/P2Pvalidator"><img src="https://badgen.net/badge/twitter/@P2Pvalidator/1DA1F2?icon&label" /></a>
-    <a href="https://github.com/p2p-org/avs-helm-charts"><img src="https://badgen.net/github/stars/p2p-org/avs-helm-charts?icon=github" /></a>
-    <a href="https://github.com/p2p-org/avs-helm-charts"><img src="https://badgen.net/github/forks/p2p-org/avs-helm-charts?icon=github" /></a>
-</p>
+_This repository based on the previous work from P2P._
+_See https://github.com/p2p-org/avs-helm-charts for more._
 
-## P2P Helm Charts for Kubernetes
-
-This repository offers a selection of carefully curated P2P Helm charts, which are stored in individual folders. Each chart has its own `values.yaml` file defining the configuration parameters.
+It offers a selection of carefully curated Helm charts, which are stored in individual folders. Each chart has its own `values.yaml` file defining the configuration parameters.
 
 ## Getting Started
 
