@@ -22,14 +22,14 @@ node:
   env:
     - name: ECDSA_KEYSTORE_PATH
       value: "/app/operator_keys/ecdsa_key.json"
-    - name: ECDSA_KEY_PASSWORD
+    - name: OPERATOR_ECDSA_KEY_PASSWORD
       valueFrom:
         secretKeyRef:
           name: YOUR_ECDSA_KEY_SECRET
           key: ecdsa-private-key-password
     - name: BLS_KEYSTORE_PATH
       value: "/app/operator_keys/bls_key.json"
-    - name: BLS_KEY_PASSWORD
+    - name: OPERATOR_BLS_KEY_PASSWORD
       valueFrom:
         secretKeyRef:
           name: YOUR_BLS_KEY_SECRET
@@ -71,7 +71,7 @@ configs:
 
     production: true
 
-    operator_address: <operator-address>
+    operator_address: YOUR_OPERATOR_ADDRESS
 
     avs_registry_coordinator_address: 0x90c6d6f2A78d5Ce22AB8631Ddb142C03AC87De7a
     operator_state_retriever_address: 0xb7bb920538e038DFFEfcB55caBf713652ED2031F
