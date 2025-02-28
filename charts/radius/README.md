@@ -1,7 +1,7 @@
 # radius Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "radius".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "radius".
 More information about radius you can find here `https://docs.radius-labs.com/introduction/tech-documentation/operator-onboarding`
 
 ## Table of Contents

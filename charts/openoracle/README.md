@@ -1,7 +1,7 @@
 # Openoracle Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "openoracle".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "openoracle".
 More information about openoracle you can find here [openoracle-configs](https://github.com/0xJomo/openoracle-configs).
 
 ## Table of Contents

@@ -1,7 +1,7 @@
 # Aethos Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "aethos".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "aethos".
 More information about aethos you can find here [aethos-operator](https://github.com/AethosNetwork/aethos-operator).
 
 ## Table of Contents

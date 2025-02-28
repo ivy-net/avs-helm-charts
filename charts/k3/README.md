@@ -1,7 +1,7 @@
 # k3 Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "k3".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "k3".
 More information about k3 you can find here `https://docs.k3-labs.com/introduction/tech-documentation/operator-onboarding`
 
 ## Table of Contents

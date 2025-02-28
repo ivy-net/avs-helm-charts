@@ -1,0 +1,28 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: no-commit-to-branch
+        args: [--branch, dev, --branch, master]
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+          .+\.svg|
+          .+\.json
+          )
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+      - id: check-yaml
+        exclude: '(starters|charts)/.*/templates/.*'
+        args: ['--unsafe']
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+  - repo: https://github.com/melmorabity/helm-kubeconform
+    rev: 0.6.7.1
+    hooks:
+      - id: helm-kubeconform

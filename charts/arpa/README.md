@@ -1,7 +1,7 @@
 # Arpa Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "arpa".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "arpa".
 More information about arpa you can find here [arpa-onboarding](https://github.com/ARPA-Network/BLS-TSS-Network/blob/main/docs/eigenlayer-onboarding.md).
 
 ## Table of Contents
