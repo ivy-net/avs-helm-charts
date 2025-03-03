@@ -206,7 +206,3 @@ securityContext: {}
 
 # Volumes for the pod
 volumes: []
-
-vmPodScrape:
-  # Enable or disable VM Pod Scraping
-  enabled: true

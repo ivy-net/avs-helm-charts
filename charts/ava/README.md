@@ -73,7 +73,6 @@ The following table lists the configurable parameters of the ava chart and their
 | `node.resources.limits`     | CPU/Memory resource limits                            | `4 CPU / 16Gi Memory` |
 | `serviceAccount.create`     | Specifies whether a service account should be created | `true`                |
 | `serviceAccount.name`       | Name of the service account                           | `""`                  |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                | `false`               |
 | `register.enabled`          | Enable register functionality                         | `true`                |
 | `register.image.repository` | Register image repository                             | `avaprotocol/ap-avs`  |
 | `register.image.tag`        | Register image tag                                    | `latest`              |

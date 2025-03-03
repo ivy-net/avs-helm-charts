@@ -58,7 +58,6 @@ The following table lists the configurable parameters of the openoracle chart an
 | `node.resources.limits`     | CPU/Memory resource limits                                    | `4 CPU / 16Gi Memory`        |
 | `serviceAccount.create`     | Specifies whether a service account should be created         | `true`                       |
 | `serviceAccount.name`       | Name of the service account                                   | `""`                         |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                        | `true`                       |
 | `register.enabled`          | Enable register functionality                                 | `true`                       |
 | `register.image.repository` | Register image repository                                     | `openoracleofficial/openoracle-labs-avs-operator` |
 | `register.image.tag`        | Register image tag                                            | `latest`                     |

@@ -15,7 +15,6 @@ This Helm chart is used to deploy a Kubernetes application. The following docume
     - [Node Container Parameters](#node-container-parameters)
     - [Pod Parameters](#pod-parameters)
     - [Service Account Parameters](#service-account-parameters)
-    - [VM Pod Scrape Parameters](#vm-pod-scrape-parameters)
   - [Example](#example)
 
 ## Parameters
@@ -96,12 +95,6 @@ This Helm chart is used to deploy a Kubernetes application. The following docume
 | `serviceAccount.create`      | Specifies whether a service account should be created | `true`       |
 | `serviceAccount.annotations` | Annotations to add to the service account | `{}`          |
 | `serviceAccount.name`        | The name of the service account to use. If not set and create is true, a name is generated using the fullname template | `""`          |
-
-### VM Pod Scrape Parameters
-
-| Parameter                | Description                          | Default       |
-|--------------------------|--------------------------------------|---------------|
-| `vmPodScrape.enabled`    | Enable or disable VM Pod Scraping    | `true`        |
 
 ## Example
 

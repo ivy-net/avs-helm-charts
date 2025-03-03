@@ -19,6 +19,7 @@ spec:
         {{- with .Values.labels }}
         {{- toYaml . | nindent 6 }}
         {{- end}}
+  serviceName: {{ include "lagrange.fullname" . }}
   template:
     metadata:
       annotations:
@@ -53,12 +54,12 @@ spec:
           {{- toYaml . | nindent 12 }}
           {{- end }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.node.image.pullPolicy }}
           ports:
-          {{- toYaml $.Values.node.ports | nindent 10 }}
-          {{- if .Values.lifecycleHooks }}
+          {{- toYaml $.Values.node.ports | nindent 12 }}
+          {{- if .Values.node.lifecycleHooks }}
           lifecycle:
           {{- toYaml .Values.node.lifecycleHooks | nindent 12 }}
           {{- end }}

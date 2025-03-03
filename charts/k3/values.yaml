@@ -127,5 +127,3 @@ serviceAccount:
   # runAsUser: 1000
   #
 volumes: []
-vmPodScrape:
-  enabled: true

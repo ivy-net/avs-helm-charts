@@ -26,3 +26,5 @@ repos:
     rev: 0.6.7.1
     hooks:
       - id: helm-kubeconform
+        exclude: 'starters/avs/'
+        args: ['--debug']

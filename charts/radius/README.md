@@ -50,7 +50,6 @@ The following table lists the configurable parameters of the radius chart and th
 | `node.resources.limits`     | CPU/Memory resource limits                                    | `4 CPU / 16Gi Memory`        |
 | `serviceAccount.create`     | Specifies whether a service account should be created         | `true`                       |
 | `serviceAccount.name`       | Name of the service account                                   | `""`                         |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                        | `true`                       |
 | `register.enabled`          | Enable register functionality                                 | `true`                       |
 | `register.image.repository` | Register image repository                                     | `theradius/loggia` |
 | `register.image.tag`        | Register image tag                                            | `latest`                     |

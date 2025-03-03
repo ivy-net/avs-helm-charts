@@ -128,6 +128,3 @@ volumes:
   - name: radius
     persistentVolumeClaim:
       claimName: radius
-
-vmPodScrape:
-  enabled: false
