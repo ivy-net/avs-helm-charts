@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 0.9.0-rc.0
 description: A Helm chart for Kubernetes
 maintainers:
-- name: dr_nie
+- name: wawrzek
   email: wawrzek@ivynet.dev
 name: eigenda
 type: application
