@@ -126,10 +126,10 @@ node:
     tag: stable
   resources:
     limits:
-      cpu: 2
+      cpu: "2"
       memory: 2Gi
     requests:
-      cpu: 1
+      cpu: "1"
       memory: 1Gi
 ```
 
@@ -137,5 +137,15 @@ Then install the chart using the Helm CLI:
 
 ```sh
 helm repo add p2p-avs https://p2p-org.github.io/avs-helm-charts/
-helm upgrade -i  lagrange-release  p2p-avs/lagrange -f values.holesky.yaml
+helm upgrade -i  eigenda-release  p2p-avs/eigenda -f values.holesky.yaml
 ```
+
+
+## Contributors
+
+- OsamaMomani
+-
+-
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.

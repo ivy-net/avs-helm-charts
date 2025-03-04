@@ -15,6 +15,7 @@ spec:
         {{- with .Values.labels }}
         {{- toYaml . | nindent 6 }}
         {{- end}}
+  serviceName: {{ include "ava.fullname" . }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}

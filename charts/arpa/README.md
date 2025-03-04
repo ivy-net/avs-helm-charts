@@ -1,7 +1,7 @@
 # Arpa Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "arpa".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "arpa".
 More information about arpa you can find here [arpa-onboarding](https://github.com/ARPA-Network/BLS-TSS-Network/blob/main/docs/eigenlayer-onboarding.md).
 
 ## Table of Contents
@@ -69,7 +69,6 @@ The following table lists the configurable parameters of the arpa chart and thei
 | `node.resources.limits`     | CPU/Memory resource limits                                    | `4 CPU / 16Gi Memory`        |
 | `serviceAccount.create`     | Specifies whether a service account should be created         | `true`                       |
 | `serviceAccount.name`       | Name of the servisce account                                   | `""`                         |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                        | `true`                       |
 | `nodeShell.enabled`          | Enable nodeShell functionality                                 | `true`                       |
 | `nodeShell.image.repository` | nodeShell image repository                                     | `ghcr.io/arpa-network/node-client` |
 | `nodeShell.image.tag`        | nodeShell image tag                                            | `latest`                     |

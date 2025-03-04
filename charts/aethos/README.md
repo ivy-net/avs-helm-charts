@@ -1,7 +1,7 @@
 # Aethos Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "aethos".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "aethos".
 More information about aethos you can find here [aethos-operator](https://github.com/AethosNetwork/aethos-operator).
 
 ## Table of Contents
@@ -59,7 +59,6 @@ The following table lists the configurable parameters of the aethos chart and th
 | node.resources.limits     | CPU/Memory resource limits                                    | 4 CPU / 16Gi Memory        |
 | serviceAccount.create     | Specifies whether a service account should be created         | true                       |
 | serviceAccount.name       | Name of the service account                                   | ""                         |
-| vmPodScrape.enabled       | Enable VM Pod scraping                                        | true                       |
 | register.enabled          | Enable register functionality                                 | true                       |
 | register.image.repository | Register image repository                                     | ghcr.io/aethosnetwork/operator |
 | register.image.tag        | Register image tag                                            | latest                     |

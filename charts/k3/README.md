@@ -1,7 +1,7 @@
 # k3 Helm Chart
 
 ## Introduction
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "k3".   
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "k3".
 More information about k3 you can find here `https://docs.k3-labs.com/introduction/tech-documentation/operator-onboarding`
 
 ## Table of Contents
@@ -59,7 +59,6 @@ The following table lists the configurable parameters of the k3 chart and their 
 | `node.resources.limits`     | CPU/Memory resource limits                                    | `4 CPU / 16Gi Memory`        |
 | `serviceAccount.create`     | Specifies whether a service account should be created         | `true`                       |
 | `serviceAccount.name`       | Name of the service account                                   | `""`                         |
-| `vmPodScrape.enabled`       | Enable VM Pod scraping                                        | `true`                       |
 | `register.enabled`          | Enable register functionality                                 | `true`                       |
 | `register.image.repository` | Register image repository                                     | `k3official/k3-labs-avs-operator` |
 | `register.image.tag`        | Register image tag                                            | `latest`                     |

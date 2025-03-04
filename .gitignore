@@ -1,1 +1,14 @@
+# MacOS
 .DS_Store
+
+# Archives
+*.tar.gz
+*.tgz
+
+# Test values
+values.mine.yaml
+
+# VIM temp files
+*~
+*.sw?
+.*.un
