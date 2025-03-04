@@ -27,7 +27,7 @@ jobs:
           for i in /opt/hostedtoolcache/ct/3.12.0/amd64/etc/*
           do
             ls -1 $i
-            echo $i
+            cat $i
           done
       - name: Run chart-testing (list-changed)
         id: list-changed
