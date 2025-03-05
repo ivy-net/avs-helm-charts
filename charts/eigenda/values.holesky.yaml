@@ -5,11 +5,6 @@ node:
     pullPolicy: Always
     tag: "0.9.0-rc.0"
 
-  # Ports to expose from the node container
-  internalRetrievalPort: 3204
-  dispersalPort: 32005
-  metricsPort: 9092
-  nodeApiPort: 9091
   # Resource limits and requests for the node container
   resources: {}
   # Example resource limits and requests
@@ -147,10 +142,10 @@ configs:
   # If you are using a reverse proxy in a shared network space, the reverse proxy should listen at $NODE_DISPERSAL_PORT
   # and forward the traffic to $NODE_INTERNAL_DISPERSAL_PORT, and similarly for retrieval. The DA node will register the
   # $NODE_DISPERSAL_PORT port on the chain and listen for the reverse proxy at $NODE_INTERNAL_DISPERSAL_PORT.
-  NODE_INTERNAL_DISPERSAL_PORT: "32005"
-  NODE_INTERNAL_RETRIEVAL_PORT: "32004"
-  NODE_INTERNAL_V2_DISPERSAL_PORT: "32006"
-  NODE_INTERNAL_V2_RETRIEVAL_PORT: "32007"
+  NODE_INTERNAL_DISPERSAL_PORT: "32105"
+  NODE_INTERNAL_RETRIEVAL_PORT: "32104"
+  NODE_INTERNAL_V2_DISPERSAL_PORT: "32106"
+  NODE_INTERNAL_V2_RETRIEVAL_PORT: "32107"
 
 
   # Reachability Check
