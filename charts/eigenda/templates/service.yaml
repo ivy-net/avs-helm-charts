@@ -15,12 +15,12 @@ spec:
   type: {{ .Values.service.type }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   ports:
-  {{- range .Values.service.ports }}
-  - name: {{ .name }}
-    port: {{ .port }}
-    protocol: {{ .protocol }}
-    targetPort: {{ .targetPort }}
-  {{- end }}
+    {{- range $key, $value := .Values.ports }}
+    - port: {{ $value.port }}
+      targetPort: {{ $value.targetPort}}
+      protocol: TCP
+      name: {{ $key }}
+    {{- end }}
   selector:
     {{- with .Values.labels }}
       {{- toYaml . | nindent 4 }}

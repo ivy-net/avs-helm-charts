@@ -44,20 +44,6 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-      - name: reverse-proxy
-        image: nginx:latest
-        ports:
-        - name: retrieval
-          containerPort: {{ .Values.reverseProxy.nodeRetrievalPort }}
-          protocol: TCP
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/templates/default.conf.template
-          subPath: default.conf.template
-        envFrom:
-        - configMapRef:
-            name: {{ include "eigenda.fullname" . }}-config
-
       - name: node
         {{- with .Values.node.command }}
         command:
@@ -72,18 +58,11 @@ spec:
         image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.node.image.pullPolicy }}
         ports:
-        - name: in-retrieval
-          containerPort: {{ .Values.node.internalRetrievalPort }}
-          protocol: TCP
-        - name: api
-          containerPort: {{ .Values.node.nodeApiPort }}
-          protocol: TCP
-        - name: dispersal
-          containerPort: {{ .Values.node.dispersalPort }}
-          protocol: TCP
-        - name: metrics
-          containerPort: {{ .Values.node.metricsPort }}
-          protocol: TCP
+          {{- range $key, $value := .Values.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $value.targetPort}}
+              protocol: TCP
+          {{- end }}
         {{- if .Values.lifecycleHooks }}
         lifecycle:
         {{- toYaml .Values.node.lifecycleHooks | nindent 12 }}
@@ -107,6 +86,20 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ include "eigenda.fullname" . }}-config
+      - name: reverse-proxy
+        image: nginx:latest
+        ports:
+        - name: retrieval
+          containerPort: {{ .Values.ports.reverseproxy.targetPort }}
+          protocol: TCP
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/templates/default.conf.template
+          subPath: default.conf.template
+        envFrom:
+        - configMapRef:
+            name: {{ include "eigenda.fullname" . }}-config
+
 
       volumes:
           {{- with .Values.volumes }}
