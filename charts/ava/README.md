@@ -99,8 +99,9 @@ If you encounter any issues during installation or usage, check the following:
 
 ## Changelog
 
-- 0.2.1 - improve value files; better documentation
-- 0.2.0 - improvements to documentation and examples (first IvyNet version)
+- 0.2.2 - improve value files; better documentation
+- 0.2.1 - remove scraper VM
+- 0.2.0 - improve documentation and examples (first IvyNet version)
 - 0.1.1 - change templates extension
 - 0.1.0 - original chart
 
