@@ -49,13 +49,17 @@ _For a help with a local test check the [example](./example/README.md) folder._
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
    - consider adjusting `eth_rpc_url` and `eth_ws_url`
 1. Run the following commands to install the chart.
-All, but last commands are optional, and ensures that the installation won't fail.
     ```sh
     NAME=ours
     kubectl create ns ava
     cd $(git rev-parse --show-toplevel)/charts
     rm ava-*.tgz
     helm package ava
+    helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
+    ```
+All, but last commands are optional, and ensures that the installation won't fail.
+If that is achieved in an alternative way, the installation can be done with this one command:
+    ```
     helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
     ```
 
@@ -95,14 +99,15 @@ If you encounter any issues during installation or usage, check the following:
 
 ## Changelog
 
+- 0.2.1 - improve value files; better documentation
 - 0.2.0 - improvements to documentation and examples (first IvyNet version)
-- 0.1.1 - change templates extensio
-- 0.1.0 - orignal chart
+- 0.1.1 - change templates extension
+- 0.1.0 - original chart
 
 ## Contributors
 
+- wawrzek (Wawrzek Niewodniczanski) - wawrzek@ivynet.dev
 - xom4ek (Aleksei Lazarev) - aleksei.lazarev@p2p.org
-- dr\_nie (Wawrzek Niewodniczanski) - wawrzek@ivynet.dev
 
 ## License
 
