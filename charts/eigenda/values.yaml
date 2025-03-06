@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=values.schema.json
 # Optionally override the name of the chart
 nameOverride: ""
 

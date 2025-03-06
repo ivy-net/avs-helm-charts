@@ -1,180 +1,439 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "properties": {
-        "affinity": {
-            "properties": {},
-            "type": "object"
-        },
-        "configs": {
-            "properties": {
-                "operator.yaml": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "fullnameOverride": {
-            "type": "string"
-        },
-        "imagePullSecrets": {
-            "type": "array"
-        },
-        "ingress": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "host": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "labels": {
-            "properties": {},
-            "type": "object"
-        },
-        "nameOverride": {
-            "type": "string"
-        },
-        "node": {
-            "properties": {
-                "args": {
-                    "type": "array"
-                },
-                "env": {
-                    "type": "array"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "livenessProbe": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "ports": {
-                    "type": "array"
-                },
-                "readinessProbe": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "resources": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "volumeMounts": {
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
-        "nodeSelector": {
-            "properties": {},
-            "type": "object"
-        },
-        "podAnnotations": {
-            "properties": {},
-            "type": "object"
-        },
-        "podSecurityContext": {
-            "properties": {},
-            "type": "object"
-        },
-        "register": {
-            "properties": {
-                "args": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            "type": "object"
-        },
-        "replicaCount": {
-            "type": "integer"
-        },
-        "securityContext": {
-            "properties": {},
-            "type": "object"
-        },
-        "service": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "ports": {
-                    "type": "array"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "serviceAccount": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "create": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "tolerations": {
-            "type": "array"
-        },
-        "vmPodScrape": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object"
-        },
-        "volumes": {
-            "type": "array"
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "additionalProperties": false,
+      "description": "Affinity rules for the pod",
+      "required": [],
+      "title": "affinity",
+      "type": "object"
     },
-    "type": "object"
+    "configs": {
+      "additionalProperties": false,
+      "properties": {
+        "operator.yaml": {
+          "default": "# some configs via file\n",
+          "description": "Configuration file for the operator",
+          "required": [],
+          "title": "operator.yaml",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operator.yaml"
+      ],
+      "title": "configs",
+      "type": "object"
+    },
+    "fullnameOverride": {
+      "default": "",
+      "description": "Optionally override the full name of the chart",
+      "required": [],
+      "title": "fullnameOverride",
+      "type": "string"
+    },
+    "global": {
+      "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name.",
+      "required": [],
+      "title": "global",
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "description": "Secrets for pulling images from a private registry",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "imagePullSecrets",
+      "type": "array"
+    },
+    "ingress": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the ingress",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "description": "Enable or disable the ingress",
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "host": {
+          "default": "example.com",
+          "description": "Hostname for the ingress",
+          "required": [],
+          "title": "host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "enabled",
+        "host"
+      ],
+      "title": "ingress",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": false,
+      "description": "Additional labels to add to resources",
+      "required": [],
+      "title": "labels",
+      "type": "object"
+    },
+    "nameOverride": {
+      "default": "",
+      "description": "yaml-language-server: $schema=values.schema.json\nOptionally override the name of the chart",
+      "required": [],
+      "title": "nameOverride",
+      "type": "string"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "description": "Arguments to pass to the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "env": {
+          "description": "Environment variables for the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "env",
+          "type": "array"
+        },
+        "image": {
+          "additionalProperties": false,
+          "description": "Configuration for the node container image",
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "description": "Image pull policy for the node container",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "\u003cIMAGE_REGISTRY\u003e",
+              "description": "Image registry for the node container",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "\u003cIMAGE_TAG\u003e",
+              "description": "Image tag for the node container",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "livenessProbe": {
+          "additionalProperties": false,
+          "description": "Liveness probe for the node container",
+          "required": [],
+          "title": "livenessProbe",
+          "type": "object"
+        },
+        "ports": {
+          "description": "Ports to expose from the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "readinessProbe": {
+          "additionalProperties": false,
+          "description": "Readiness probe for the node container",
+          "required": [],
+          "title": "readinessProbe",
+          "type": "object"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "description": "Resource limits and requests for the node container",
+          "required": [],
+          "title": "resources",
+          "type": "object"
+        },
+        "volumeMounts": {
+          "description": "Volume mounts for the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "volumeMounts",
+        "image",
+        "ports",
+        "resources",
+        "env",
+        "args",
+        "readinessProbe",
+        "livenessProbe"
+      ],
+      "title": "node",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "additionalProperties": false,
+      "description": "Node selector for the pod",
+      "required": [],
+      "title": "nodeSelector",
+      "type": "object"
+    },
+    "podAnnotations": {
+      "additionalProperties": false,
+      "description": "Annotations to add to the pod",
+      "required": [],
+      "title": "podAnnotations",
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "additionalProperties": false,
+      "description": "Security context for the pod",
+      "required": [],
+      "title": "podSecurityContext",
+      "type": "object"
+    },
+    "register": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "description": "Arguments to pass to the register container",
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              },
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "enabled": {
+          "default": true,
+          "description": "Enable or disable the register container",
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "image": {
+          "additionalProperties": false,
+          "description": "Configuration for the register container image",
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "description": "Image pull policy for the register container",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "\u003cIMAGE_REGISTRY\u003e",
+              "description": "Image registry for the register container",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "\u003cIMAGE_TAG\u003e",
+              "description": "Image tag for the register container",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "image",
+        "args"
+      ],
+      "title": "register",
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": 1,
+      "description": "Number of replicas to deploy",
+      "required": [],
+      "title": "replicaCount",
+      "type": "integer"
+    },
+    "securityContext": {
+      "additionalProperties": false,
+      "description": "Security context for the container",
+      "required": [],
+      "title": "securityContext",
+      "type": "object"
+    },
+    "service": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "ports": {
+          "description": "List of ports to expose from the service",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "type": {
+          "default": "ClusterIP",
+          "description": "Type of service to create",
+          "required": [],
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "type",
+        "ports"
+      ],
+      "title": "service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service account",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Specifies whether a service account should be created",
+          "required": [],
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
+          "required": [],
+          "title": "name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "create",
+        "annotations",
+        "name"
+      ],
+      "title": "serviceAccount",
+      "type": "object"
+    },
+    "tolerations": {
+      "description": "Tolerations for the pod",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "tolerations",
+      "type": "array"
+    },
+    "vmPodScrape": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": true,
+          "description": "Enable or disable VM Pod Scraping",
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "title": "vmPodScrape",
+      "type": "object"
+    },
+    "volumes": {
+      "description": "Volumes for the pod",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "volumes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "nameOverride",
+    "fullnameOverride",
+    "replicaCount",
+    "labels",
+    "imagePullSecrets",
+    "service",
+    "ingress",
+    "configs",
+    "register",
+    "node",
+    "nodeSelector",
+    "tolerations",
+    "affinity",
+    "serviceAccount",
+    "podAnnotations",
+    "podSecurityContext",
+    "securityContext",
+    "volumes",
+    "vmPodScrape"
+  ],
+  "type": "object"
 }

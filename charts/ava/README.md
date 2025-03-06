@@ -3,7 +3,7 @@
 ## Introduction
 
 This repository contains a Helm chart for Kubernetes, specifically for the AVS named "ava".
-More information about ava you can find here `https://github.com/AvaProtocol/ap-operator-setup/tree/main`
+More information about ava you can find [here](https://github.com/AvaProtocol/ap-operator-setup/tree/main)
 
 ## Table of Contents
 
@@ -36,22 +36,28 @@ This chart depends on several Kubernetes resources (e.g. PV, secrets), and shoul
 _A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
 Use it only for tests._
 1. Make a copy the `values.yaml` file for the selected chain (holesky or mainnet). E.g.:
-    ```
+    ```sh
     CHAIN=holesky
     NAME=ours
-    cp values-${CHAIN}.yaml values-${NAME}.yaml
+    cp values.${CHAIN}.yaml values.${NAME}.yaml
     ```
 1. Ensure that the Persistent volume named 'ava' is created.
 _For a help with a local test check the [example](./example/README.md) folder._
-1. Fill the placeholders in the `values-${NAME}.yaml` file:
+1. Fill the placeholders in the `values.${NAME}.yaml` file:
    - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
    - consider adjusting `eth_rpc_url` and `eth_ws_url`
-1. Run the following command to install the chart:
-   ```sh
-   helm install -i ava p2p-avs/ava -f values-${NAME}.yaml
-   ```
+1. Run the following commands to install the chart.
+All, but last commands are optional, and ensures that the installation won't fail.
+    ```sh
+    NAME=ours
+    kubectl create ns ava
+    cd $(git rev-parse --show-toplevel)/charts
+    rm ava-*.tgz
+    helm package ava
+    helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
+    ```
 
 Registration must be pass automatically via job register.
 
