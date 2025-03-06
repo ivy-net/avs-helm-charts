@@ -3,7 +3,7 @@
 ## Introduction
 
 This repository contains a Helm chart for Kubernetes, specifically for the AVS named "eigenda".
-More information about eigenda you can find [here](https://github.com/AvaProtocol/ap-operator-setup/tree/main)
+More information about the AVS can be found in the [operator setup git repo](https://github.com/Layr-Labs/eigenda-operator-setup).
 
 ## Table of Contents
 
@@ -33,7 +33,10 @@ More information about eigenda you can find [here](https://github.com/AvaProtoco
 
 Ensure that Kubernetes and Helm are installed and configured.
 
-This chart depends on several Kubernetes resources (e.g. PV, secrets), and should be used in a Kubernetes cluster.
+This chart depends on several Kubernetes resources,e.g.: PV, secrets.
+Deploy them in advance.
+The [example](./example/README.md) folder contain basic implementation of required resources.
+
 
 ### Steps to Follow
 
@@ -75,8 +78,7 @@ If that is achieved in an alternative way, the installation can be done with thi
 
 Registration must be pass automatically via job register.
 
-
-## Configuaration
+## Configuration
 
 ### Global Parameters
 
