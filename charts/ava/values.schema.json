@@ -230,10 +230,10 @@
           "type": "array"
         },
         "resources": {
-          "additionalProperties": false,
+          "additionalProperties": true,
+          "description": "Resources configuration",
           "required": [],
-          "title": "resources",
-          "type": "object"
+          "title": "resources"
         },
         "volumeMounts": {
           "items": {
@@ -248,7 +248,6 @@
         "volumeMounts",
         "image",
         "ports",
-        "resources",
         "env",
         "command",
         "args"

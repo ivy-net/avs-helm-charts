@@ -81,6 +81,10 @@ node:
     - name: metrics
       containerPort: 9090
       protocol: TCP
+  # -- Resources configuration
+  # @schema
+  # additionalProperties: true
+  # @schema
   resources:
     {}
     # limits:
