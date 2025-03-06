@@ -1,0 +1,988 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "additionalProperties": false,
+      "description": "Affinity rules for the pod",
+      "required": [],
+      "title": "affinity",
+      "type": "object"
+    },
+    "configs": {
+      "additionalProperties": false,
+      "properties": {
+        "BURST_LIMIT": {
+          "default": "50",
+          "required": [],
+          "title": "BURST_LIMIT",
+          "type": "string"
+        },
+        "NODE_API_PORT": {
+          "default": "9091",
+          "required": [],
+          "title": "NODE_API_PORT",
+          "type": "string"
+        },
+        "NODE_BLS_KEY_FILE": {
+          "default": "/app/operator_keys/bls_key.json",
+          "required": [],
+          "title": "NODE_BLS_KEY_FILE",
+          "type": "string"
+        },
+        "NODE_BLS_OPERATOR_STATE_RETRIVER": {
+          "default": "0xB4baAfee917fb4449f5ec64804217bccE9f46C67",
+          "required": [],
+          "title": "NODE_BLS_OPERATOR_STATE_RETRIVER",
+          "type": "string"
+        },
+        "NODE_CACHE_ENCODED_BLOBS": {
+          "default": "true",
+          "required": [],
+          "title": "NODE_CACHE_ENCODED_BLOBS",
+          "type": "string"
+        },
+        "NODE_CACHE_PATH": {
+          "default": "/app/cache",
+          "required": [],
+          "title": "NODE_CACHE_PATH",
+          "type": "string"
+        },
+        "NODE_CHAIN_ID": {
+          "default": "17000",
+          "required": [],
+          "title": "NODE_CHAIN_ID",
+          "type": "string"
+        },
+        "NODE_CHAIN_RPC": {
+          "default": "https://ethereum-holesky-rpc.publicnode.com",
+          "description": "TODO: Operators need to point this to a working chain RPC",
+          "required": [],
+          "title": "NODE_CHAIN_RPC",
+          "type": "string"
+        },
+        "NODE_CHURNER_URL": {
+          "default": "CHURNER-HOLESKY.EIGENDA.XYZ:443",
+          "description": "Churner URL",
+          "required": [],
+          "title": "NODE_CHURNER_URL",
+          "type": "string"
+        },
+        "NODE_CLIENT_IP_HEADER": {
+          "default": "x-real-ip",
+          "description": "The name of the header used to get the client IP address\nIf set to empty string, the IP address will be taken from the connection.\nThe rightmost value of the header will be used.",
+          "required": [],
+          "title": "NODE_CLIENT_IP_HEADER",
+          "type": "string"
+        },
+        "NODE_DATAAPI_URL": {
+          "default": "https://dataapi-holesky.eigenda.xyz",
+          "required": [],
+          "title": "NODE_DATAAPI_URL",
+          "type": "string"
+        },
+        "NODE_DB_PATH": {
+          "default": "/data/operator/db",
+          "required": [],
+          "title": "NODE_DB_PATH",
+          "type": "string"
+        },
+        "NODE_DISPERSAL_PORT": {
+          "default": "32005",
+          "required": [],
+          "title": "NODE_DISPERSAL_PORT",
+          "type": "string"
+        },
+        "NODE_ECDSA_KEY_FILE": {
+          "default": "/app/operator_keys/ecdsa_key.json",
+          "description": "EigenDA mounted locations",
+          "required": [],
+          "title": "NODE_ECDSA_KEY_FILE",
+          "type": "string"
+        },
+        "NODE_EIGENDA_SERVICE_MANAGER": {
+          "default": "0xD4A7E1Bd8015057293f0D0A557088c286942e84b",
+          "description": "Holesky smart contracts",
+          "required": [],
+          "title": "NODE_EIGENDA_SERVICE_MANAGER",
+          "type": "string"
+        },
+        "NODE_ENABLE_METRICS": {
+          "default": "true",
+          "description": "Metrics specific configs",
+          "required": [],
+          "title": "NODE_ENABLE_METRICS",
+          "type": "string"
+        },
+        "NODE_ENABLE_NODE_API": {
+          "default": "true",
+          "description": "Node API specific configs",
+          "required": [],
+          "title": "NODE_ENABLE_NODE_API",
+          "type": "string"
+        },
+        "NODE_EXPIRATION_POLL_INTERVAL": {
+          "default": "180",
+          "description": "EigenDA specific configs",
+          "required": [],
+          "title": "NODE_EXPIRATION_POLL_INTERVAL",
+          "type": "string"
+        },
+        "NODE_G1_PATH": {
+          "default": "/app/g1.point",
+          "required": [],
+          "title": "NODE_G1_PATH",
+          "type": "string"
+        },
+        "NODE_G2_POWER_OF_2_PATH": {
+          "default": "/app/g2.point.powerOf2",
+          "required": [],
+          "title": "NODE_G2_POWER_OF_2_PATH",
+          "type": "string"
+        },
+        "NODE_HOST": {
+          "default": "localhost",
+          "required": [],
+          "title": "NODE_HOST",
+          "type": "string"
+        },
+        "NODE_HOSTNAME": {
+          "default": "YOUR_NODE_IP",
+          "description": "##############################################################################\n###### TODO: Operators please update below values for your node ##############\n##############################################################################\nTODO: IP of your node",
+          "required": [],
+          "title": "NODE_HOSTNAME",
+          "type": "string"
+        },
+        "NODE_INTERNAL_DISPERSAL_PORT": {
+          "default": "32105",
+          "description": "If you are using a reverse proxy in a shared network space, the reverse proxy should listen at $NODE_DISPERSAL_PORT\nand forward the traffic to $NODE_INTERNAL_DISPERSAL_PORT, and similarly for retrieval. The DA node will register the\n$NODE_DISPERSAL_PORT port on the chain and listen for the reverse proxy at $NODE_INTERNAL_DISPERSAL_PORT.",
+          "required": [],
+          "title": "NODE_INTERNAL_DISPERSAL_PORT",
+          "type": "string"
+        },
+        "NODE_INTERNAL_RETRIEVAL_PORT": {
+          "default": "32104",
+          "required": [],
+          "title": "NODE_INTERNAL_RETRIEVAL_PORT",
+          "type": "string"
+        },
+        "NODE_INTERNAL_V2_DISPERSAL_PORT": {
+          "default": "32106",
+          "required": [],
+          "title": "NODE_INTERNAL_V2_DISPERSAL_PORT",
+          "type": "string"
+        },
+        "NODE_INTERNAL_V2_RETRIEVAL_PORT": {
+          "default": "32107",
+          "required": [],
+          "title": "NODE_INTERNAL_V2_RETRIEVAL_PORT",
+          "type": "string"
+        },
+        "NODE_LOG_FORMAT": {
+          "default": "text",
+          "required": [],
+          "title": "NODE_LOG_FORMAT",
+          "type": "string"
+        },
+        "NODE_LOG_LEVEL": {
+          "default": "debug",
+          "description": "Node logs configs",
+          "required": [],
+          "title": "NODE_LOG_LEVEL",
+          "type": "string"
+        },
+        "NODE_LOG_PATH": {
+          "default": "/app/logs/opr.log",
+          "required": [],
+          "title": "NODE_LOG_PATH",
+          "type": "string"
+        },
+        "NODE_METRICS_PORT": {
+          "default": "9092",
+          "required": [],
+          "title": "NODE_METRICS_PORT",
+          "type": "string"
+        },
+        "NODE_NUM_WORKERS": {
+          "default": "1",
+          "required": [],
+          "title": "NODE_NUM_WORKERS",
+          "type": "string"
+        },
+        "NODE_PRIVATE_KEY": {
+          "default": "",
+          "required": [],
+          "title": "NODE_PRIVATE_KEY",
+          "type": "string"
+        },
+        "NODE_PUBLIC_IP_CHECK_INTERVAL": {
+          "default": "10s",
+          "description": "How often to check the public IP address of the node. Set this to 0 to disable\nautomatic IP address updating (if you have a stable IP address)",
+          "required": [],
+          "title": "NODE_PUBLIC_IP_CHECK_INTERVAL",
+          "type": "string"
+        },
+        "NODE_PUBLIC_IP_PROVIDER": {
+          "default": "seeip",
+          "description": "TODO: The IP provider service used to obtain a node's public IP [seeip (default), ipify]",
+          "required": [],
+          "title": "NODE_PUBLIC_IP_PROVIDER",
+          "type": "string"
+        },
+        "NODE_QUORUM_ID_LIST": {
+          "default": "0",
+          "description": "This is a dummy value for now. This won't be used as we are explicitly asking for quorum while opting in/out\nIn future release, this will be removed",
+          "required": [],
+          "title": "NODE_QUORUM_ID_LIST",
+          "type": "string"
+        },
+        "NODE_REACHABILITY_POLL_INTERVAL": {
+          "default": "60",
+          "description": "Reachability Check",
+          "required": [],
+          "title": "NODE_REACHABILITY_POLL_INTERVAL",
+          "type": "string"
+        },
+        "NODE_RETRIEVAL_PORT": {
+          "default": "32004",
+          "required": [],
+          "title": "NODE_RETRIEVAL_PORT",
+          "type": "string"
+        },
+        "NODE_RUNTIME_MODE": {
+          "default": "v1-and-v2",
+          "description": "This flag defines a runtime mode. Acceptable inputs are v1-only, v2-only, v1-and-v2",
+          "required": [],
+          "title": "NODE_RUNTIME_MODE",
+          "type": "string"
+        },
+        "NODE_SRS_LOAD": {
+          "default": "131072",
+          "required": [],
+          "title": "NODE_SRS_LOAD",
+          "type": "string"
+        },
+        "NODE_SRS_ORDER": {
+          "default": "268435456",
+          "required": [],
+          "title": "NODE_SRS_ORDER",
+          "type": "string"
+        },
+        "NODE_TEST_PRIVATE_BLS": {
+          "default": "",
+          "description": "These are used for testing purpose",
+          "required": [],
+          "title": "NODE_TEST_PRIVATE_BLS",
+          "type": "string"
+        },
+        "NODE_TIMEOUT": {
+          "default": "20s",
+          "required": [],
+          "title": "NODE_TIMEOUT",
+          "type": "string"
+        },
+        "NODE_V2_DISPERSAL_PORT": {
+          "default": "32006",
+          "required": [],
+          "title": "NODE_V2_DISPERSAL_PORT",
+          "type": "string"
+        },
+        "NODE_V2_RETRIEVAL_PORT": {
+          "default": "32007",
+          "required": [],
+          "title": "NODE_V2_RETRIEVAL_PORT",
+          "type": "string"
+        },
+        "NODE_VERBOSE": {
+          "default": "true",
+          "required": [],
+          "title": "NODE_VERBOSE",
+          "type": "string"
+        },
+        "REQUEST_LIMIT": {
+          "default": "10r/s",
+          "description": "Nginx configuration for the reverse proxy",
+          "required": [],
+          "title": "REQUEST_LIMIT",
+          "type": "string"
+        }
+      },
+      "required": [
+        "NODE_TEST_PRIVATE_BLS",
+        "NODE_PRIVATE_KEY",
+        "NODE_EXPIRATION_POLL_INTERVAL",
+        "NODE_CACHE_ENCODED_BLOBS",
+        "NODE_NUM_WORKERS",
+        "NODE_DISPERSAL_PORT",
+        "NODE_V2_DISPERSAL_PORT",
+        "NODE_RUNTIME_MODE",
+        "NODE_QUORUM_ID_LIST",
+        "NODE_VERBOSE",
+        "NODE_RETRIEVAL_PORT",
+        "NODE_V2_RETRIEVAL_PORT",
+        "NODE_TIMEOUT",
+        "NODE_SRS_ORDER",
+        "NODE_SRS_LOAD",
+        "NODE_INTERNAL_DISPERSAL_PORT",
+        "NODE_INTERNAL_RETRIEVAL_PORT",
+        "NODE_INTERNAL_V2_DISPERSAL_PORT",
+        "NODE_INTERNAL_V2_RETRIEVAL_PORT",
+        "NODE_REACHABILITY_POLL_INTERVAL",
+        "NODE_DATAAPI_URL",
+        "NODE_ECDSA_KEY_FILE",
+        "NODE_BLS_KEY_FILE",
+        "NODE_G1_PATH",
+        "NODE_G2_POWER_OF_2_PATH",
+        "NODE_CACHE_PATH",
+        "NODE_LOG_PATH",
+        "NODE_DB_PATH",
+        "NODE_LOG_LEVEL",
+        "NODE_LOG_FORMAT",
+        "NODE_ENABLE_METRICS",
+        "NODE_METRICS_PORT",
+        "NODE_ENABLE_NODE_API",
+        "NODE_API_PORT",
+        "NODE_EIGENDA_SERVICE_MANAGER",
+        "NODE_BLS_OPERATOR_STATE_RETRIVER",
+        "NODE_CHURNER_URL",
+        "NODE_CLIENT_IP_HEADER",
+        "NODE_PUBLIC_IP_CHECK_INTERVAL",
+        "NODE_HOSTNAME",
+        "REQUEST_LIMIT",
+        "NODE_HOST",
+        "BURST_LIMIT",
+        "NODE_CHAIN_RPC",
+        "NODE_CHAIN_ID",
+        "NODE_PUBLIC_IP_PROVIDER"
+      ],
+      "title": "configs",
+      "type": "object"
+    },
+    "fullnameOverride": {
+      "default": "",
+      "description": "Optionally override the full name of the chart",
+      "required": [],
+      "title": "fullnameOverride",
+      "type": "string"
+    },
+    "global": {
+      "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name.",
+      "required": [],
+      "title": "global",
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "description": "Secrets for pulling images from a private registry",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "imagePullSecrets",
+      "type": "array"
+    },
+    "ingress": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the ingress",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "description": "Enable or disable the ingress",
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "host": {
+          "default": "example.com",
+          "description": "Hostname for the ingress",
+          "required": [],
+          "title": "host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "enabled",
+        "host"
+      ],
+      "title": "ingress",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": false,
+      "description": "Additional labels to add to resources",
+      "required": [],
+      "title": "labels",
+      "type": "object"
+    },
+    "nameOverride": {
+      "default": "",
+      "description": "yaml-language-server: $schema=values.schema.json\nOptionally override the name of the chart",
+      "required": [],
+      "title": "nameOverride",
+      "type": "string"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "description": "Arguments to pass to the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "dispersalPort": {
+          "default": 32005,
+          "required": [],
+          "title": "dispersalPort",
+          "type": "integer"
+        },
+        "dispersalPortv2": {
+          "default": 32006,
+          "required": [],
+          "title": "dispersalPortv2",
+          "type": "integer"
+        },
+        "env": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "env",
+          "type": "array"
+        },
+        "image": {
+          "additionalProperties": false,
+          "description": "Configuration for the node container image",
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "ghcr.io/layr-labs/eigenda/opr-node",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "latest",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "internalRetrievalPort": {
+          "default": 32004,
+          "required": [],
+          "title": "internalRetrievalPort",
+          "type": "integer"
+        },
+        "internalRetrievalPortv2": {
+          "default": 32007,
+          "required": [],
+          "title": "internalRetrievalPortv2",
+          "type": "integer"
+        },
+        "metricsPort": {
+          "default": 9092,
+          "required": [],
+          "title": "metricsPort",
+          "type": "integer"
+        },
+        "nodeApiPort": {
+          "default": 9091,
+          "description": "Ports to expose from the node container",
+          "required": [],
+          "title": "nodeApiPort",
+          "type": "integer"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "description": "Resource limits and requests for the node container",
+          "required": [],
+          "title": "resources",
+          "type": "object"
+        },
+        "volumeMounts": {
+          "description": "Environment variables for the node container",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "image",
+        "nodeApiPort",
+        "metricsPort",
+        "internalRetrievalPort",
+        "dispersalPort",
+        "dispersalPortv2",
+        "internalRetrievalPortv2",
+        "resources",
+        "volumeMounts",
+        "env",
+        "args"
+      ],
+      "title": "node",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "additionalProperties": false,
+      "description": "Node selector for the pod",
+      "required": [],
+      "title": "nodeSelector",
+      "type": "object"
+    },
+    "podAnnotations": {
+      "additionalProperties": false,
+      "description": "Annotations to add to the pod",
+      "required": [],
+      "title": "podAnnotations",
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "additionalProperties": false,
+      "description": "Security context for the pod",
+      "required": [],
+      "title": "podSecurityContext",
+      "type": "object"
+    },
+    "ports": {
+      "additionalProperties": false,
+      "description": "List of ports to expose from the service and container",
+      "properties": {
+        "api": {
+          "additionalProperties": false,
+          "description": "Example port configuration for metrics service",
+          "properties": {
+            "port": {
+              "default": 9091,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 9091,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "api",
+          "type": "object"
+        },
+        "dispersal": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 32105,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 32005,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "dispersal",
+          "type": "object"
+        },
+        "dispersalv2": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 32106,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 32006,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "dispersalv2",
+          "type": "object"
+        },
+        "metrics": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 9092,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 9092,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "metrics",
+          "type": "object"
+        },
+        "retrieval": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 32104,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 32004,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "retrieval",
+          "type": "object"
+        },
+        "retrievalv2": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 32107,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 32007,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "retrievalv2",
+          "type": "object"
+        },
+        "reverseproxy": {
+          "additionalProperties": false,
+          "properties": {
+            "port": {
+              "default": 32004,
+              "required": [],
+              "title": "port",
+              "type": "integer"
+            },
+            "targetPort": {
+              "default": 32004,
+              "required": [],
+              "title": "targetPort",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "port",
+            "targetPort"
+          ],
+          "title": "reverseproxy",
+          "type": "object"
+        }
+      },
+      "required": [
+        "api",
+        "metrics",
+        "retrieval",
+        "dispersal",
+        "dispersalv2",
+        "retrievalv2",
+        "reverseproxy"
+      ],
+      "title": "ports",
+      "type": "object"
+    },
+    "pvc": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "labels": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "labels",
+          "type": "object"
+        },
+        "size": {
+          "default": "30Gi",
+          "required": [],
+          "title": "size",
+          "type": "string"
+        },
+        "storageClassName": {
+          "default": "default",
+          "required": [],
+          "title": "storageClassName",
+          "type": "string"
+        }
+      },
+      "required": [
+        "size",
+        "storageClassName",
+        "annotations",
+        "labels"
+      ],
+      "title": "pvc",
+      "type": "object"
+    },
+    "register": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "description": "Arguments to pass to the register container",
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "enabled": {
+          "default": false,
+          "description": "Enable or disable the register container",
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "image": {
+          "additionalProperties": false,
+          "description": "Configuration for the register container image",
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "description": "Image pull policy for the register container",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "\u003cIMAGE_REGISTRY\u003e",
+              "description": "Image registry for the register container",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "\u003cIMAGE_TAG\u003e",
+              "description": "Image tag for the register container",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "image",
+        "args"
+      ],
+      "title": "register",
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": 1,
+      "description": "Number of replicas to deploy",
+      "required": [],
+      "title": "replicaCount",
+      "type": "integer"
+    },
+    "reverseProxy": {
+      "additionalProperties": false,
+      "description": "Ports to expose from the node container",
+      "properties": {
+        "nodeRetrievalPort": {
+          "default": 32004,
+          "required": [],
+          "title": "nodeRetrievalPort",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "nodeRetrievalPort"
+      ],
+      "title": "reverseProxy",
+      "type": "object"
+    },
+    "securityContext": {
+      "additionalProperties": false,
+      "description": "Security context for the container",
+      "required": [],
+      "title": "securityContext",
+      "type": "object"
+    },
+    "service": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "type": {
+          "default": "ClusterIP",
+          "description": "Type of service to create",
+          "required": [],
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "type"
+      ],
+      "title": "service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service account",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Specifies whether a service account should be created",
+          "required": [],
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template",
+          "required": [],
+          "title": "name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "create",
+        "annotations",
+        "name"
+      ],
+      "title": "serviceAccount",
+      "type": "object"
+    },
+    "tolerations": {
+      "description": "Tolerations for the pod",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "tolerations",
+      "type": "array"
+    },
+    "volumes": {
+      "description": "Volumes for the pod",
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "volumes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "nameOverride",
+    "fullnameOverride",
+    "replicaCount",
+    "labels",
+    "imagePullSecrets",
+    "ports",
+    "service",
+    "ingress",
+    "register",
+    "pvc",
+    "nodeSelector",
+    "tolerations",
+    "affinity",
+    "serviceAccount",
+    "podAnnotations",
+    "podSecurityContext",
+    "securityContext",
+    "volumes",
+    "node",
+    "reverseProxy",
+    "configs"
+  ],
+  "type": "object"
+}

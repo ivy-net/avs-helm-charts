@@ -1,287 +1,677 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "properties": {
-        "affinity": {
-            "properties": {},
-            "type": "object"
-        },
-        "configs": {
-            "properties": {
-                "config.toml": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "fullnameOverride": {
-            "type": "string"
-        },
-        "imagePullSecrets": {
-            "type": "array"
-        },
-        "ingress": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "host": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "labels": {
-            "properties": {},
-            "type": "object"
-        },
-        "nameOverride": {
-            "type": "string"
-        },
-        "node": {
-            "properties": {
-                "args": {
-                    "type": "array"
-                },
-                "env": {
-                    "type": "array"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "livenessProbe": {
-                    "properties": {
-                        "initialDelaySeconds": {
-                            "type": "integer"
-                        },
-                        "periodSeconds": {
-                            "type": "integer"
-                        },
-                        "tcpSocket": {
-                            "properties": {
-                                "port": {
-                                    "type": "integer"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "type": "object"
-                },
-                "ports": {
-                    "items": {
-                        "properties": {
-                            "containerPort": {
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "protocol": {
-                                "type": "string"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "readinessProbe": {
-                    "properties": {
-                        "initialDelaySeconds": {
-                            "type": "integer"
-                        },
-                        "periodSeconds": {
-                            "type": "integer"
-                        },
-                        "tcpSocket": {
-                            "properties": {
-                                "port": {
-                                    "type": "integer"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "type": "object"
-                },
-                "resources": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "volumeMounts": {
-                    "items": {
-                        "properties": {
-                            "mountPath": {
-                                "type": "string"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
-        "nodeSelector": {
-            "properties": {},
-            "type": "object"
-        },
-        "pvc": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "labesl": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "size": {
-                    "type": "string"
-                },
-                "storageClassName": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "register": {
-            "properties": {
-                "args": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            "type": "object"
-        },
-        "replicaCount": {
-            "type": "integer"
-        },
-        "service": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "ports": {
-                    "items": {
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "port": {
-                                "type": "integer"
-                            },
-                            "protocol": {
-                                "type": "string"
-                            },
-                            "targetPort": {
-                                "type": "integer"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "serviceAccount": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "create": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "podAnnotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "podSecurityContext": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "securityContext": {
-                    "properties": {},
-                    "type": "object"
-                }
-            },
-            "type": "object"
-        },
-        "tolerations": {
-            "type": "array"
-        },
-        "vmPodScrape": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object"
-        },
-        "volumes": {
-            "items": {
-                "properties": {
-                    "configMap": {
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
-            "type": "array"
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "affinity",
+      "type": "object"
     },
-    "type": "object"
+    "configs": {
+      "additionalProperties": false,
+      "properties": {
+        "config.toml": {
+          "default": "\n# Sequencer\ndatabase_path = \"/home/.radius/database/sequencer\"\nsequencer_rpc_url = \"http://YOUR_PUBLIC_DOMAIN\" # This must be the public IP address of the host machine on which the sequencer container runs.\n\n# Ethereum\nethereum_rpc_url = \"http://127.0.0.1:8545\" ## replace with your rpc\nethereum_websocket_url = \"ws://127.0.0.1:8545\" ## replace with your rpc\nsigning_key = \"YOUR_WALLET_KEY\" # Replace the text with the operator private key\n\n# SSAL\nssal_contract_address = \"0x67d269191c92Caf3cD7723F116c85e6E9bf55933\"\ncluster_id = \"0x38a941d2d4959baae54ba9c14502abe54ffd4ad0db290295f453ef9d7d5a3f2d\"\nseeder_rpc_url = \"http://127.0.0.1:3000\"\n\n# EigenLayer AVS\ndelegation_manager_contract_address = \"0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9\"\nstake_registry_contract_address = \"0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9\"\navs_directory_contract_address = \"0x5FC8d32690cc91D4c39d9d3abcBD16989F875707\"\navs_contract_address = \"0x9E545E3C0baAB3E08CdfD552C960A1050f373042\"\n",
+          "required": [],
+          "title": "config.toml",
+          "type": "string"
+        }
+      },
+      "required": [
+        "config.toml"
+      ],
+      "title": "configs",
+      "type": "object"
+    },
+    "fullnameOverride": {
+      "default": "",
+      "required": [],
+      "title": "fullnameOverride",
+      "type": "string"
+    },
+    "global": {
+      "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name.",
+      "required": [],
+      "title": "global",
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "imagePullSecrets",
+      "type": "array"
+    },
+    "ingress": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "host": {
+          "default": "YOUR_PUBLIC_DOMAIN",
+          "required": [],
+          "title": "host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "enabled",
+        "host"
+      ],
+      "title": "ingress",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "labels",
+      "type": "object"
+    },
+    "nameOverride": {
+      "default": "",
+      "description": "yaml-language-server: $schema=values.schema.json",
+      "required": [],
+      "title": "nameOverride",
+      "type": "string"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "env": {
+          "description": "limits:\n  cpu: 4\n  memory: 16Gi\nrequests:\n  cpu: 2\n  memory: 8Gi",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "env",
+          "type": "array"
+        },
+        "image": {
+          "additionalProperties": false,
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "theradius/loggia",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "livenessProbe": {
+          "additionalProperties": false,
+          "properties": {
+            "initialDelaySeconds": {
+              "default": 15,
+              "required": [],
+              "title": "initialDelaySeconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "default": 10,
+              "required": [],
+              "title": "periodSeconds",
+              "type": "integer"
+            },
+            "tcpSocket": {
+              "additionalProperties": false,
+              "properties": {
+                "port": {
+                  "default": 80,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "tcpSocket",
+              "type": "object"
+            }
+          },
+          "required": [
+            "tcpSocket",
+            "initialDelaySeconds",
+            "periodSeconds"
+          ],
+          "title": "livenessProbe",
+          "type": "object"
+        },
+        "ports": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "default": 80,
+                    "required": [],
+                    "title": "containerPort",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "default": "node-api",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "containerPort",
+                  "protocol"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "readinessProbe": {
+          "additionalProperties": false,
+          "properties": {
+            "initialDelaySeconds": {
+              "default": 15,
+              "required": [],
+              "title": "initialDelaySeconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "default": 10,
+              "required": [],
+              "title": "periodSeconds",
+              "type": "integer"
+            },
+            "tcpSocket": {
+              "additionalProperties": false,
+              "properties": {
+                "port": {
+                  "default": 80,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "tcpSocket",
+              "type": "object"
+            }
+          },
+          "required": [
+            "tcpSocket",
+            "initialDelaySeconds",
+            "periodSeconds"
+          ],
+          "title": "readinessProbe",
+          "type": "object"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "resources",
+          "type": "object"
+        },
+        "volumeMounts": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "mountPath": {
+                    "default": "/home/.radius/database",
+                    "required": [],
+                    "title": "mountPath",
+                    "type": "string"
+                  },
+                  "name": {
+                    "default": "radius",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "mountPath"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "mountPath": {
+                    "default": "/home/config.toml",
+                    "required": [],
+                    "title": "mountPath",
+                    "type": "string"
+                  },
+                  "name": {
+                    "default": "config",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "subPath": {
+                    "default": "config.toml",
+                    "required": [],
+                    "title": "subPath",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "mountPath",
+                  "subPath"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "volumeMounts",
+        "image",
+        "ports",
+        "resources",
+        "env",
+        "args",
+        "readinessProbe",
+        "livenessProbe"
+      ],
+      "title": "node",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "nodeSelector",
+      "type": "object"
+    },
+    "pvc": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "labesl": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "labesl",
+          "type": "object"
+        },
+        "size": {
+          "default": "150Gi",
+          "required": [],
+          "title": "size",
+          "type": "string"
+        },
+        "storageClassName": {
+          "default": "oci-bv",
+          "required": [],
+          "title": "storageClassName",
+          "type": "string"
+        }
+      },
+      "required": [
+        "size",
+        "storageClassName",
+        "labesl",
+        "annotations"
+      ],
+      "title": "pvc",
+      "type": "object"
+    },
+    "register": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "image": {
+          "additionalProperties": false,
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "theradius/loggia",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "image",
+        "args"
+      ],
+      "title": "register",
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": 1,
+      "required": [],
+      "title": "replicaCount",
+      "type": "integer"
+    },
+    "service": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "ports": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "default": "node-api",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "port": {
+                    "default": 80,
+                    "required": [],
+                    "title": "port",
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  },
+                  "targetPort": {
+                    "default": 80,
+                    "required": [],
+                    "title": "targetPort",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "port",
+                  "protocol",
+                  "targetPort"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "type": {
+          "default": "ClusterIP",
+          "required": [],
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "type",
+        "ports"
+      ],
+      "title": "service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service account",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Specifies whether a service account should be created",
+          "required": [],
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
+          "required": [],
+          "title": "name",
+          "type": "string"
+        },
+        "podAnnotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "podAnnotations",
+          "type": "object"
+        },
+        "podSecurityContext": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "podSecurityContext",
+          "type": "object"
+        },
+        "securityContext": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "securityContext",
+          "type": "object"
+        }
+      },
+      "required": [
+        "create",
+        "annotations",
+        "name",
+        "podAnnotations",
+        "podSecurityContext",
+        "securityContext"
+      ],
+      "title": "serviceAccount",
+      "type": "object"
+    },
+    "tolerations": {
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "tolerations",
+      "type": "array"
+    },
+    "volumes": {
+      "items": {
+        "anyOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "configMap": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "default": "radius-config",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "title": "configMap",
+                "type": "object"
+              },
+              "name": {
+                "default": "config",
+                "required": [],
+                "title": "name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "configMap"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "default": "radius",
+                "required": [],
+                "title": "name",
+                "type": "string"
+              },
+              "persistentVolumeClaim": {
+                "additionalProperties": false,
+                "properties": {
+                  "claimName": {
+                    "default": "radius",
+                    "required": [],
+                    "title": "claimName",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "claimName"
+                ],
+                "title": "persistentVolumeClaim",
+                "type": "object"
+              }
+            },
+            "required": [
+              "name",
+              "persistentVolumeClaim"
+            ],
+            "type": "object"
+          }
+        ],
+        "required": []
+      },
+      "required": [],
+      "title": "volumes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "nameOverride",
+    "fullnameOverride",
+    "replicaCount",
+    "labels",
+    "imagePullSecrets",
+    "service",
+    "ingress",
+    "pvc",
+    "configs",
+    "register",
+    "node",
+    "nodeSelector",
+    "tolerations",
+    "affinity",
+    "serviceAccount",
+    "volumes"
+  ],
+  "type": "object"
 }

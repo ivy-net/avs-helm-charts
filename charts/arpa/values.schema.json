@@ -1,349 +1,834 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "properties": {
-        "affinity": {
-            "properties": {},
-            "type": "object"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "affinity": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "affinity",
+      "type": "object"
+    },
+    "cloudwatch": {
+      "additionalProperties": false,
+      "description": "egister-as-eigenlayer-operator /app/operator_keys/ecdsa_key.json $ARPA_NODE_ACCOUNT_KEYSTORE_PASSWORD",
+      "properties": {
+        "args": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
         },
-        "cloudwatch": {
-            "properties": {
-                "args": {
-                    "type": "array"
-                },
-                "command": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "env": {
-                    "type": "array"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "resources": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "volumeMounts": {
-                    "type": "array"
-                }
+        "command": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "command",
+          "type": "array"
+        },
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "env": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "env",
+          "type": "array"
+        },
+        "image": {
+          "additionalProperties": false,
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
             },
-            "type": "object"
-        },
-        "configs": {
-            "properties": {
-                "default_linux_config.json": {
-                    "type": "string"
-                },
-                "operator.yaml": {
-                    "type": "string"
-                }
+            "repository": {
+              "default": "ghcr.io/arpa-network/node-client",
+              "required": [],
+              "title": "repository",
+              "type": "string"
             },
-            "type": "object"
+            "tag": {
+              "default": "latest",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
         },
-        "fullnameOverride": {
-            "type": "string"
+        "resources": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "resources",
+          "type": "object"
         },
-        "imagePullSecrets": {
-            "type": "array"
+        "volumeMounts": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "enabled",
+        "volumeMounts",
+        "image",
+        "resources",
+        "env",
+        "command",
+        "args"
+      ],
+      "title": "cloudwatch",
+      "type": "object"
+    },
+    "configs": {
+      "additionalProperties": false,
+      "properties": {
+        "default_linux_config.json": {
+          "default": "\n{\n    \"agent\": {\n            \"run_as_user\": \"root\",\n            \"region\": \"us-east-1\",\n            \"mode\": \"onPremise\"\n    },\n    \"logs\": {\n        \"logs_collected\": {\n            \"files\": {\n                \"collect_list\": [\n                    {\n                            \"file_path\": \"/app/data/log/1/node.log\",\n                            \"log_group_class\": \"STANDARD\",\n                            \"log_group_name\": \"arpa-network-logs\",\n                            \"log_stream_name\": \"YOUR_OPERATOR_ADDRES\",\n                            \"retention_in_days\": -1\n                    },\n                    {\n                            \"file_path\": \"/app/data/log/1/node_err.log\",\n                            \"log_group_class\": \"STANDARD\",\n                            \"log_group_name\": \"arpa-network-logs\",\n                            \"log_stream_name\": \"YOUR_OPERATOR_ADDRES\",\n                            \"retention_in_days\": -1\n                    }\n                ]\n            }\n        }\n    }\n}\n",
+          "required": [],
+          "title": "default_linux_config.json",
+          "type": "string"
         },
-        "ingress": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "host": {
-                    "type": "string"
-                }
+        "operator.yaml": {
+          "default": "\nnode_committer_rpc_endpoint: \"0.0.0.0:50061\"\nnode_advertised_committer_rpc_endpoint: \"143.47.183.136:50061\"\nnode_management_rpc_endpoint: \"0.0.0.0:50091\"\nnode_management_rpc_token: \"c3VwZXJzZWNyZXR0b2tlbg==\"\nnode_statistics_http_endpoint: \"0.0.0.0:50081\"\nprovider_endpoint: \"wss://lb.drpc.org/ogws?network=holesky\"\nchain_id: 17000\nis_eigenlayer: true\ncontroller_address: \"0xbF53802722985b01c30C0C065738BcC776Ef5A69\"\ncontroller_relayer_address: \"0x4A88f1d5D3ab086763df5967D7560148006eE8b4\"\nadapter_address: \"0x88ab708e6A43eF8c7ab6a3f24B1F90f52a1682b8\"\ndata_path: \"/app/data/data1.sqlite\"\n\nlogger:\n  context_logging: false\n  log_file_path: /app/data/log/1/\n  rolling_file_size: 10 gb\n\naccount:\n  keystore:\n      password: env\n      path: /app/operator_keys/ecdsa_key.json\n\nlisteners:\n  - l_type: Block\n    interval_millis: 0\n    use_jitter: true\n  - l_type: NewRandomnessTask\n    interval_millis: 0\n    use_jitter: true\n  - l_type: PreGrouping\n    interval_millis: 0\n    use_jitter: true\n  - l_type: PostCommitGrouping\n    interval_millis: 1000\n    use_jitter: true\n  - l_type: PostGrouping\n    interval_millis: 1000\n    use_jitter: true\n  - l_type: ReadyToHandleRandomnessTask\n    interval_millis: 1000\n    use_jitter: true\n  - l_type: RandomnessSignatureAggregation\n    interval_millis: 2000\n    use_jitter: false\n\ntime_limits:\n  block_time: 12\n  dkg_timeout_duration: 40\n  randomness_task_exclusive_window: 10\n  listener_interval_millis: 1000\n  dkg_wait_for_phase_interval_millis: 1000\n  provider_polling_interval_millis: 1000\n  provider_reset_descriptor:\n    interval_millis: 5000\n    max_attempts: 17280\n    use_jitter: false\n  contract_transaction_retry_descriptor:\n    base: 2\n    factor: 1000\n    max_attempts: 3\n    use_jitter: true\n  contract_view_retry_descriptor:\n    base: 2\n    factor: 500\n    max_attempts: 5\n    use_jitter: true\n  commit_partial_signature_retry_descriptor:\n    base: 2\n    factor: 1000\n    max_attempts: 5\n    use_jitter: false\n\nrelayed_chains:\n  - chain_id: 17069\n    description: \"Redstone Garnet\"\n    provider_endpoint: \"wss://rpc.garnetchain.com\"\n    controller_oracle_address: \"0x901105C43C7f0e421b33c9D1DaA25f54076F6563\"\n    adapter_address: \"0x323488A9Ad7463081F109468B4E50a5084e91295\"\n    listeners:\n      - l_type: Block\n        interval_millis: 0\n        use_jitter: true\n      - l_type: NewRandomnessTask\n        interval_millis: 0\n        use_jitter: true\n      - l_type: ReadyToHandleRandomnessTask\n        interval_millis: 1000\n        use_jitter: true\n      - l_type: RandomnessSignatureAggregation\n        interval_millis: 2000\n        use_jitter: false\n    time_limits:\n      block_time: 2\n      randomness_task_exclusive_window: 10\n      listener_interval_millis: 1000\n      provider_polling_interval_millis: 1000\n      provider_reset_descriptor:\n        interval_millis: 5000\n        max_attempts: 17280\n        use_jitter: false\n      contract_transaction_retry_descriptor:\n        base: 2\n        factor: 1000\n        max_attempts: 3\n        use_jitter: true\n      contract_view_retry_descriptor:\n        base: 2\n        factor: 500\n        max_attempts: 5\n        use_jitter: true\n      commit_partial_signature_retry_descriptor:\n        base: 2\n        factor: 1000\n        max_attempts: 5\n        use_jitter: false\n",
+          "required": [],
+          "title": "operator.yaml",
+          "type": "string"
+        }
+      },
+      "required": [
+        "default_linux_config.json",
+        "operator.yaml"
+      ],
+      "title": "configs",
+      "type": "object"
+    },
+    "fullnameOverride": {
+      "default": "",
+      "required": [],
+      "title": "fullnameOverride",
+      "type": "string"
+    },
+    "global": {
+      "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name.",
+      "required": [],
+      "title": "global",
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "imagePullSecrets",
+      "type": "array"
+    },
+    "ingress": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "host": {
+          "default": "example.com",
+          "required": [],
+          "title": "host",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "enabled",
+        "host"
+      ],
+      "title": "ingress",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "labels",
+      "type": "object"
+    },
+    "nameOverride": {
+      "default": "",
+      "description": "yaml-language-server: $schema=values.schema.json",
+      "required": [],
+      "title": "nameOverride",
+      "type": "string"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "command": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "command",
+          "type": "array"
+        },
+        "env": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "env",
+          "type": "array"
+        },
+        "image": {
+          "additionalProperties": false,
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
             },
-            "type": "object"
+            "repository": {
+              "default": "ghcr.io/arpa-network/node-client",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "latest",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "ports": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "default": 50061,
+                    "required": [],
+                    "title": "containerPort",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "default": "node-api",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "containerPort",
+                  "protocol"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "containerPort": {
+                    "default": 50081,
+                    "required": [],
+                    "title": "containerPort",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "default": "metrics",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "containerPort",
+                  "protocol"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "readinessProbe": {
+          "additionalProperties": false,
+          "properties": {
+            "failureThreshold": {
+              "default": 3,
+              "required": [],
+              "title": "failureThreshold",
+              "type": "integer"
+            },
+            "initialDelaySeconds": {
+              "default": 10,
+              "required": [],
+              "title": "initialDelaySeconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "default": 5,
+              "required": [],
+              "title": "periodSeconds",
+              "type": "integer"
+            },
+            "successThreshold": {
+              "default": 1,
+              "required": [],
+              "title": "successThreshold",
+              "type": "integer"
+            },
+            "tcpSocket": {
+              "additionalProperties": false,
+              "properties": {
+                "port": {
+                  "default": 50081,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "tcpSocket",
+              "type": "object"
+            },
+            "timeoutSeconds": {
+              "default": 1,
+              "required": [],
+              "title": "timeoutSeconds",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "tcpSocket",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "timeoutSeconds",
+            "successThreshold",
+            "failureThreshold"
+          ],
+          "title": "readinessProbe",
+          "type": "object"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "properties": {
+            "limits": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "default": 4,
+                  "required": [],
+                  "title": "cpu",
+                  "type": "integer"
+                },
+                "memory": {
+                  "default": "4Gi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "limits",
+              "type": "object"
+            },
+            "requests": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "default": 2,
+                  "required": [],
+                  "title": "cpu",
+                  "type": "integer"
+                },
+                "memory": {
+                  "default": "4Gi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "requests",
+              "type": "object"
+            }
+          },
+          "required": [
+            "limits",
+            "requests"
+          ],
+          "title": "resources",
+          "type": "object"
+        },
+        "volumeMounts": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "volumeMounts",
+        "image",
+        "ports",
+        "resources",
+        "env",
+        "command",
+        "args",
+        "readinessProbe"
+      ],
+      "title": "node",
+      "type": "object"
+    },
+    "nodeSelector": {
+      "additionalProperties": false,
+      "required": [],
+      "title": "nodeSelector",
+      "type": "object"
+    },
+    "nodeShell": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "args",
+          "type": "array"
+        },
+        "command": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "command",
+          "type": "array"
+        },
+        "enabled": {
+          "default": true,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "image": {
+          "additionalProperties": false,
+          "properties": {
+            "pullPolicy": {
+              "default": "Always",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            },
+            "repository": {
+              "default": "ghcr.io/arpa-network/node-shell",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "latest",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "pullPolicy",
+            "tag"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "resources": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "resources",
+          "type": "object"
+        },
+        "volumeMounts": {
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "volumeMounts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "enabled",
+        "volumeMounts",
+        "image",
+        "resources",
+        "command",
+        "args"
+      ],
+      "title": "nodeShell",
+      "type": "object"
+    },
+    "pvc": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "annotations",
+          "type": "object"
         },
         "labels": {
-            "properties": {},
-            "type": "object"
+          "additionalProperties": false,
+          "required": [],
+          "title": "labels",
+          "type": "object"
         },
-        "nameOverride": {
-            "type": "string"
+        "size": {
+          "default": "10Gi",
+          "required": [],
+          "title": "size",
+          "type": "string"
         },
-        "node": {
-            "properties": {
-                "args": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "command": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "env": {
-                    "type": "array"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "ports": {
-                    "items": {
-                        "properties": {
-                            "containerPort": {
-                                "type": "integer"
-                            },
-                            "name": {
-                                "type": "string"
-                            },
-                            "protocol": {
-                                "type": "string"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "readinessProbe": {
-                    "properties": {
-                        "failureThreshold": {
-                            "type": "integer"
-                        },
-                        "initialDelaySeconds": {
-                            "type": "integer"
-                        },
-                        "periodSeconds": {
-                            "type": "integer"
-                        },
-                        "successThreshold": {
-                            "type": "integer"
-                        },
-                        "tcpSocket": {
-                            "properties": {
-                                "port": {
-                                    "type": "integer"
-                                }
-                            },
-                            "type": "object"
-                        },
-                        "timeoutSeconds": {
-                            "type": "integer"
-                        }
-                    },
-                    "type": "object"
-                },
-                "resources": {
-                    "properties": {
-                        "limits": {
-                            "properties": {
-                                "cpu": {
-                                    "type": ["integer", "string"]
-                                },
-                                "memory": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        },
-                        "requests": {
-                            "properties": {
-                                "cpu": {
-                                    "type": ["integer", "string"]
-                                },
-                                "memory": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    },
-                    "type": "object"
-                },
-                "volumeMounts": {
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
-        "nodeSelector": {
-            "properties": {},
-            "type": "object"
-        },
-        "nodeShell": {
-            "properties": {
-                "args": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "command": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "image": {
-                    "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
-                        "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "resources": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "volumeMounts": {
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
-        "pvc": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "labels": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "size": {
-                    "type": "string"
-                },
-                "storageClassName": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "replicaCount": {
-            "type": "integer"
-        },
-        "service": {
-            "properties": {
-                "annotations": {
-                    "properties": {
-                        "oci-network-load-balancer.oraclecloud.com/security-list-management-mode": {
-                            "type": "string"
-                        },
-                        "oci.oraclecloud.com/load-balancer-type": {
-                            "type": "string"
-                        },
-                        "oci.oraclecloud.com/security-rule-management-mode": {
-                            "type": "string"
-                        }
-                    },
-                    "type": "object"
-                },
-                "ports": {
-                    "items": {
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "port": {
-                                "type": "integer"
-                            },
-                            "protocol": {
-                                "type": "string"
-                            },
-                            "targetPort": {
-                                "type": "integer"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "type": "array"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "serviceAccount": {
-            "properties": {
-                "annotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "create": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "podAnnotations": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "podSecurityContext": {
-                    "properties": {},
-                    "type": "object"
-                },
-                "securityContext": {
-                    "properties": {},
-                    "type": "object"
-                }
-            },
-            "type": "object"
-        },
-        "tolerations": {
-            "type": "array"
-        },
-        "vmPodScrape": {
-            "properties": {
-                "enabled": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object"
-        },
-        "volumes": {
-            "type": "array"
+        "storageClassName": {
+          "default": "default",
+          "required": [],
+          "title": "storageClassName",
+          "type": "string"
         }
+      },
+      "required": [
+        "size",
+        "storageClassName",
+        "annotations",
+        "labels"
+      ],
+      "title": "pvc",
+      "type": "object"
     },
-    "type": "object"
+    "replicaCount": {
+      "default": 1,
+      "required": [],
+      "title": "replicaCount",
+      "type": "integer"
+    },
+    "service": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "properties": {
+            "oci-network-load-balancer.oraclecloud.com/security-list-management-mode": {
+              "default": "All",
+              "required": [],
+              "title": "oci-network-load-balancer.oraclecloud.com/security-list-management-mode",
+              "type": "string"
+            },
+            "oci.oraclecloud.com/load-balancer-type": {
+              "default": "nlb",
+              "required": [],
+              "title": "oci.oraclecloud.com/load-balancer-type",
+              "type": "string"
+            },
+            "oci.oraclecloud.com/security-rule-management-mode": {
+              "default": "SL-All",
+              "required": [],
+              "title": "oci.oraclecloud.com/security-rule-management-mode",
+              "type": "string"
+            }
+          },
+          "required": [
+            "oci.oraclecloud.com/load-balancer-type",
+            "oci-network-load-balancer.oraclecloud.com/security-list-management-mode",
+            "oci.oraclecloud.com/security-rule-management-mode"
+          ],
+          "title": "annotations",
+          "type": "object"
+        },
+        "ports": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "default": "node-api",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "port": {
+                    "default": 50061,
+                    "required": [],
+                    "title": "port",
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  },
+                  "targetPort": {
+                    "default": 50061,
+                    "required": [],
+                    "title": "targetPort",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "port",
+                  "protocol",
+                  "targetPort"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "default": "metrics",
+                    "required": [],
+                    "title": "name",
+                    "type": "string"
+                  },
+                  "port": {
+                    "default": 50081,
+                    "required": [],
+                    "title": "port",
+                    "type": "integer"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "required": [],
+                    "title": "protocol",
+                    "type": "string"
+                  },
+                  "targetPort": {
+                    "default": 50081,
+                    "required": [],
+                    "title": "targetPort",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "port",
+                  "protocol",
+                  "targetPort"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "ports",
+          "type": "array"
+        },
+        "type": {
+          "default": "LoadBalancer",
+          "required": [],
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotations",
+        "type",
+        "ports"
+      ],
+      "title": "service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "additionalProperties": false,
+          "description": "Annotations to add to the service account",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Specifies whether a service account should be created",
+          "required": [],
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
+          "required": [],
+          "title": "name",
+          "type": "string"
+        },
+        "podAnnotations": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "podAnnotations",
+          "type": "object"
+        },
+        "podSecurityContext": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "podSecurityContext",
+          "type": "object"
+        },
+        "securityContext": {
+          "additionalProperties": false,
+          "required": [],
+          "title": "securityContext",
+          "type": "object"
+        }
+      },
+      "required": [
+        "create",
+        "annotations",
+        "name",
+        "podAnnotations",
+        "podSecurityContext",
+        "securityContext"
+      ],
+      "title": "serviceAccount",
+      "type": "object"
+    },
+    "tolerations": {
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "tolerations",
+      "type": "array"
+    },
+    "volumes": {
+      "items": {
+        "required": []
+      },
+      "required": [],
+      "title": "volumes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "nameOverride",
+    "fullnameOverride",
+    "replicaCount",
+    "labels",
+    "pvc",
+    "imagePullSecrets",
+    "service",
+    "ingress",
+    "configs",
+    "nodeShell",
+    "cloudwatch",
+    "node",
+    "nodeSelector",
+    "tolerations",
+    "affinity",
+    "serviceAccount",
+    "volumes"
+  ],
+  "type": "object"
 }

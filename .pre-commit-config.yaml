@@ -28,3 +28,11 @@ repos:
       - id: helm-kubeconform
         exclude: 'starters/avs/'
         args: ['--debug']
+  - repo: https://github.com/dadav/helm-schema
+    rev: 0.18.1
+    hooks:
+      - id: helm-schema
+        args:
+          - --chart-search-root=charts
+          - --no-dependencies
+          - --add-schema-reference
