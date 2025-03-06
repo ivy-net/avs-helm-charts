@@ -1,12 +1,19 @@
-# README
+# EigenDA Helm Chart
 
-This Helm chart is used to deploy a Kubernetes application. The following documentation provides details on the configurable values and their default settings.
+## Introduction
+
+This repository contains a Helm chart for Kubernetes, specifically for the AVS named "eigenda".
+More information about eigenda you can find [here](https://github.com/AvaProtocol/ap-operator-setup/tree/main)
 
 ## Table of Contents
 
-- [README](#readme)
+- [eigenda Helm Chart](#eigenda-helm-chart)
+  - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
-  - [Parameters](#parameters)
+  - [Usage](#usage)
+    - [Dependencies](#dependencies)
+    - [Steps to Follow](#steps-to-follow)
+  - [Configuration](#configuration)
     - [Global Parameters](#global-parameters)
     - [Service Parameters](#service-parameters)
     - [Ingress Parameters](#ingress-parameters)
@@ -16,8 +23,60 @@ This Helm chart is used to deploy a Kubernetes application. The following docume
     - [Pod Parameters](#pod-parameters)
     - [Service Account Parameters](#service-account-parameters)
   - [Example](#example)
+  - [Changelog](#changelog)
+  - [Contributors](#contributors)
+  - [License](#license)
 
-## Parameters
+## Usage
+
+### Dependencies
+
+Ensure that Kubernetes and Helm are installed and configured.
+
+This chart depends on several Kubernetes resources (e.g. PV, secrets), and should be used in a Kubernetes cluster.
+
+### Steps to Follow
+
+1. Generate keys via the following URLs:
+   - [Eigenlayer Operator Installation Guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation)
+   - [EigenDA Configs](https://github.com/Layr-Labs/eigenda-operator-setup)
+1. Store keys created in Step 1 in Kubernetes secrets.
+_A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
+Use it only for tests._
+1. Make a copy the `values.yaml` file for the selected chain (only holesky at the moment).
+E.g.:
+    ```sh
+    CHAIN=holesky
+    NAME=ours
+    cp values.${CHAIN}.yaml values.${NAME}.yaml
+    ```
+1. Ensure that the Persistent volume named 'eigenda' is created.
+It has to have a few files and folder.
+_For a help with a local test check the [example](./example/README.md) folder._
+1. Fill the placeholders in the `values.${NAME}.yaml` file:
+   - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
+   - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
+   - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
+   - consider adjusting `eth_rpc_url` and `eth_ws_url`
+1. Run the following commands to install the chart.
+    ```sh
+    NAME=ours
+    kubectl create ns eigenda
+    cd $(git rev-parse --show-toplevel)/charts
+    rm eigenda-*.tgz
+    helm package eigenda
+    helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
+    ```
+All, but last commands are optional, and ensures that the installation won't fail.
+If that is achieved in an alternative way, the installation can be done with this one command:
+    ```
+    helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
+    ```
+
+Registration must be pass automatically via job register.
+
+
+## Configuaration
 
 ### Global Parameters
 
@@ -140,12 +199,17 @@ helm repo add p2p-avs https://p2p-org.github.io/avs-helm-charts/
 helm upgrade -i  eigenda-release  p2p-avs/eigenda -f values.holesky.yaml
 ```
 
+## Changelog
+- master - better documentation
+- 0.2.1 - update values schema
+- 0.2.0 - update config to the 0.9.0 release; remove scraper VM
+- 0.1.2 - chart as copied from Dora Factory fork
 
 ## Contributors
 
+- wawrzek (Wawrzek Niewodniczanski) - wawrzek@ivynet.dev
 - OsamaMomani
--
--
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.

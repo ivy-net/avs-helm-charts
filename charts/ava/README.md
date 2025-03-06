@@ -35,7 +35,8 @@ This chart depends on several Kubernetes resources (e.g. PV, secrets), and shoul
 1. Store keys created in Step 1 in Kubernetes secrets.
 _A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
 Use it only for tests._
-1. Make a copy the `values.yaml` file for the selected chain (holesky or mainnet). E.g.:
+1. Make a copy the `values.yaml` file for the selected chain (holesky or mainnet).
+E.g.:
     ```sh
     CHAIN=holesky
     NAME=ours
