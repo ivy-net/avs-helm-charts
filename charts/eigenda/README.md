@@ -202,7 +202,7 @@ helm upgrade -i  eigenda-release  p2p-avs/eigenda -f values.holesky.yaml
 ```
 
 ## Changelog
-- master - better documentation
+- 0.2.2 - better documentation
 - 0.2.1 - update values schema
 - 0.2.0 - update config to the 0.9.0 release; remove scraper VM
 - 0.1.2 - chart as copied from Dora Factory fork

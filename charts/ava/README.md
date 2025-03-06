@@ -103,6 +103,8 @@ If you encounter any issues during installation or usage, check the following:
 
 ## Changelog
 
+- 0.2.4 - better documentation
+- 0.2.3 - accidental change (in line with all other)
 - 0.2.2 - improve value files; better documentation
 - 0.2.1 - remove scraper VM
 - 0.2.0 - improve documentation and examples (first IvyNet version)
