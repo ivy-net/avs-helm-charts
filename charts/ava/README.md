@@ -2,8 +2,8 @@
 
 ## Introduction
 
-This repository contains a Helm chart for Kubernetes, specifically for the AVS named "ava".
-More information about ava you can find [here](https://github.com/AvaProtocol/ap-operator-setup/tree/main)
+This repository contains a Helm chart for implementing the AVS called "ava".
+More information about the AVS can be found in the [operator setup git repo](https://github.com/AvaProtocol/ap-operator-setup/tree/main).
 
 ## Table of Contents
 
@@ -25,7 +25,10 @@ More information about ava you can find [here](https://github.com/AvaProtocol/ap
 
 Ensure that Kubernetes and Helm are installed and configured.
 
-This chart depends on several Kubernetes resources (e.g. PV, secrets), and should be used in a Kubernetes cluster.
+This chart depends on several Kubernetes resources,e.g.: PV, secrets.
+Deploy them in advance.
+The [example](./example/README.md) folder contain basic implementation of required resources.
+
 
 ### Steps to Follow
 
@@ -109,7 +112,7 @@ If you encounter any issues during installation or usage, check the following:
 ## Contributors
 
 - wawrzek (Wawrzek Niewodniczanski) - wawrzek@ivynet.dev
-- xom4ek (Aleksei Lazarev) - aleksei.lazarev@p2p.org
+- xom4ek (Aleksei Lazarev) - aleksei.lazarev@p2p.org (original work)
 
 ## License
 
