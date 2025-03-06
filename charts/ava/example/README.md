@@ -1,5 +1,5 @@
 # Persistent volume
-The `pv.yaml` file is an example of pv definition.
+The `pv.yaml` file is an example of the PV definition.
 To make it work adjust the path (to an empty folder), and value for node selector (e.g. for Docker Desktop, set it to `docker-desktop`).
 For a more complex k8s deployment the whole `nodeAffinity` block might need to be adjust.
 
