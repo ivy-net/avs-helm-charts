@@ -8,6 +8,9 @@ For a more complex k8s deployment the whole `nodeAffinity` block might need to b
 
 The `wallet-secret.yaml` file contains the example of storing the BLS and ECDSA keys along password in k8s secrets.
 It should not be use in production, as secrets are not really secure.
+Before deploying adjust content of
+- stringData - it can be replace with base64 encoded data field
+- metadata:name - ensure that it match the name used in the value file
 
 Below links to more mature solutions:
 - [vault](https://github.com/hashicorp/vault)

@@ -60,7 +60,8 @@ _For a help with a local test check the [example](./example/README.md) folder._
    - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
-   - consider adjusting `eth_rpc_url` and `eth_ws_url`
+   - `YOUR_NODE_ADDRESS`: the IP of the machine hosting eigenda node
+   - consider adjusting `NODE_CHAIN_RPC`
 1. Run the following commands to install the chart.
     ```sh
     NAME=ours
