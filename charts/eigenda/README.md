@@ -57,11 +57,10 @@ E.g.:
 It has to have a few files and folder.
 _For a help with a local test check the [example](./example/README.md) folder._
 1. Fill the placeholders in the `values.${NAME}.yaml` file:
-   - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
    - `YOUR_NODE_ADDRESS`: the IP of the machine hosting eigenda node
-   - consider adjusting `NODE_CHAIN_RPC`
+   - consider adjusting `NODE_CHAIN_RPC` in the config part
 1. Run the following commands to install the chart.
     ```sh
     NAME=ours
@@ -76,8 +75,6 @@ If that is achieved in an alternative way, the installation can be done with thi
     ```
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
     ```
-
-Registration must be pass automatically via job register.
 
 ## Configuration
 
