@@ -110,7 +110,7 @@ If you encounter any issues during installation or usage, check the following:
 - Check the logs of the Helm deployment for any errors.
 
 ## Changelog
-
+- 0.2.5 - changes to documentation
 - 0.2.4 - better documentation
 - 0.2.3 - accidental change (in line with all other)
 - 0.2.2 - improve value files; better documentation
