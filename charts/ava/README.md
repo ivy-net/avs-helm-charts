@@ -61,7 +61,7 @@ _For a help with a local test check the [example](./example/README.md) folder._
     helm package ava
     helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
     ```
-All, but last commands are optional, and ensures that the installation won't fail.
+All, but the last commands are optional, and ensures that the installation won't fail.
 If that is achieved in an alternative way, the installation can be done with this one command:
     ```
     helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml

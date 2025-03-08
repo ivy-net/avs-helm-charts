@@ -45,7 +45,8 @@ The [example](./example/README.md) folder contain basic implementation of requir
    - [EigenDA Configs](https://github.com/Layr-Labs/eigenda-operator-setup)
 1. Store keys created in Step 1 in Kubernetes secrets.
 _A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
-Use it only for tests._
+Use it only for tests.
+More info in [example/README.md](example/README.md) file._
 1. Make a copy the `values.yaml` file for the selected chain (only holesky at the moment).
 E.g.:
     ```sh
@@ -63,14 +64,14 @@ _For a help with a local test check the [example](./example/README.md) folder._
    - consider adjusting `NODE_CHAIN_RPC` in the config part
 1. Run the following commands to install the chart.
     ```sh
-    NAME=ours
     kubectl create ns eigenda
+    NAME=ours
     cd $(git rev-parse --show-toplevel)/charts
     rm eigenda-*.tgz
     helm package eigenda
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
     ```
-All, but last commands are optional, and ensures that the installation won't fail.
+All, but the last commands are optional, and ensures that the installation won't fail.
 If that is achieved in an alternative way, the installation can be done with this one command:
     ```
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml

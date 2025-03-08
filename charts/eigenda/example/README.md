@@ -12,7 +12,10 @@ It should not be use in production, as secrets are not really secure.
 Before deploying adjust content of
 - stringData - it can be replace with base64 encoded data field
 - metadata:name - ensure that it match the name used in the value file
-
+And create the `eigenda` namespace:
+```
+kubectl create ns eigenda
+```
 Below links to more mature solutions:
 - [vault](https://github.com/hashicorp/vault)
 - [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets)
