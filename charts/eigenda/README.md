@@ -45,7 +45,8 @@ The [example](./example/README.md) folder contain basic implementation of requir
    - [EigenDA Configs](https://github.com/Layr-Labs/eigenda-operator-setup)
 1. Store keys created in Step 1 in Kubernetes secrets.
 _A simple, but insecure example how to do this can be found in the [example/wallet-secret.yaml](./example/wallet-secret.yaml) file.
-Use it only for tests._
+Use it only for tests.
+More info in [example/README.md](example/README.md) file._
 1. Make a copy the `values.yaml` file for the selected chain (only holesky at the moment).
 E.g.:
     ```sh
@@ -57,26 +58,32 @@ E.g.:
 It has to have a few files and folder.
 _For a help with a local test check the [example](./example/README.md) folder._
 1. Fill the placeholders in the `values.${NAME}.yaml` file:
-   - `YOUR_OPERATOR_ADDRESS`: the address of the AVS operator
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
-   - consider adjusting `eth_rpc_url` and `eth_ws_url`
+   - `YOUR_NODE_ADDRESS`: the IP of the machine hosting eigenda node
+   - consider adjusting `NODE_CHAIN_RPC` in the config part
 1. Run the following commands to install the chart.
     ```sh
-    NAME=ours
     kubectl create ns eigenda
+    NAME=ours
     cd $(git rev-parse --show-toplevel)/charts
     rm eigenda-*.tgz
     helm package eigenda
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
     ```
-All, but last commands are optional, and ensures that the installation won't fail.
+All, but the last commands are optional, and ensures that the installation won't fail.
 If that is achieved in an alternative way, the installation can be done with this one command:
     ```
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
     ```
 
-Registration must be pass automatically via job register.
+Checking the state of k8s resources, remember that above commands create them in the `eigenda` namespace.
+E.g.
+```
+kubectl get all -n eigenda
+kubectl logs -n eigenda eigenda-0
+kubectly describe -n eigenda pvc
+```
 
 ## Configuration
 
@@ -202,6 +209,7 @@ helm upgrade -i  eigenda-release  p2p-avs/eigenda -f values.holesky.yaml
 ```
 
 ## Changelog
+- 0.2.3 - changes to documentation
 - 0.2.2 - better documentation
 - 0.2.1 - update values schema
 - 0.2.0 - update config to the 0.9.0 release; remove scraper VM

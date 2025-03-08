@@ -61,13 +61,21 @@ _For a help with a local test check the [example](./example/README.md) folder._
     helm package ava
     helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
     ```
-All, but last commands are optional, and ensures that the installation won't fail.
+All, but the last commands are optional, and ensures that the installation won't fail.
 If that is achieved in an alternative way, the installation can be done with this one command:
     ```
     helm install ava ava-*.tgz -n ava -f ava/values.${NAME}.yaml
     ```
 
 Registration must be pass automatically via job register.
+
+Checking the state of k8s resources, remember that above commands create them in the `ava` namespace.
+E.g.
+```
+kubectl get all -n ava
+kubectl logs -n ava ava-0
+kubectly describe -n ava pvc
+```
 
 ## Configuration
 
@@ -102,7 +110,7 @@ If you encounter any issues during installation or usage, check the following:
 - Check the logs of the Helm deployment for any errors.
 
 ## Changelog
-
+- 0.2.5 - changes to documentation
 - 0.2.4 - better documentation
 - 0.2.3 - accidental change (in line with all other)
 - 0.2.2 - improve value files; better documentation

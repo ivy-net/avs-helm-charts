@@ -41,7 +41,7 @@ node:
       value: "9010"
 
 serviceAccount:
-  create: false
+  create: true
   name: ava
 
 volumes:
