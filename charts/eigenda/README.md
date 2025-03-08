@@ -77,6 +77,14 @@ If that is achieved in an alternative way, the installation can be done with thi
     helm install eigenda eigenda-*.tgz -n eigenda -f eigenda/values.${NAME}.yaml
     ```
 
+Checking the state of k8s resources, remember that above commands create them in the `eigenda` namespace.
+E.g.
+```
+kubectl get all -n eigenda
+kubectl logs -n eigenda eigenda-0
+kubectly describe -n eigenda pvc
+```
+
 ## Configuration
 
 ### Global Parameters

@@ -69,6 +69,14 @@ If that is achieved in an alternative way, the installation can be done with thi
 
 Registration must be pass automatically via job register.
 
+Checking the state of k8s resources, remember that above commands create them in the `ava` namespace.
+E.g.
+```
+kubectl get all -n ava
+kubectl logs -n ava ava-0
+kubectly describe -n ava pvc
+```
+
 ## Configuration
 
 The following table lists the configurable parameters of the ava chart and their default values.
