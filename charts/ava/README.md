@@ -52,6 +52,7 @@ _For a help with a local test check the [example](./example/README.md) folder._
    - `YOUR_BLS_KEY_SECRET`: the name of the secret where the BLS key is stored (see Step 2).
    - `YOUR_ECDSA_KEY_SECRET`: the name of the secret where the ECDSA key is stored (see Step 2).
    - consider adjusting `eth_rpc_url` and `eth_ws_url`
+   - ensure that the `eth_rpc_url` and `eth_ws_url` in the `target_chain` points at the right target
 1. Run the following commands to install the chart.
     ```sh
     NAME=ours
@@ -110,6 +111,8 @@ If you encounter any issues during installation or usage, check the following:
 - Check the logs of the Helm deployment for any errors.
 
 ## Changelog
+- 0.2.7 - add missing part of the application config (in values files)
+- 0.2.6 - bump application version to 1.5.0
 - 0.2.5 - changes to documentation
 - 0.2.4 - better documentation
 - 0.2.3 - accidental change (in line with all other)
