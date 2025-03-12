@@ -90,3 +90,6 @@ configs:
     enable_metrics: true
     node_api_ip_port_address: 0.0.0.0:9010
     enable_node_api: true
+
+    enabled_features:
+      event_trigger: false
